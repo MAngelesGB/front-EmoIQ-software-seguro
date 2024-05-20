@@ -1,27 +1,35 @@
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-
+import ReachText from "../partials/ReachText";
+import './ContentManagementEdit.css';
 export default function ContentManagementEdit() {
-  //const [value, setValue] = useState('');
   return (
     <>
-      <div>
-        <button>Sugerir</button>
-        <button>Guardar</button>
-        <button>Cancelar</button>
-      </div>
-      <form>
+      <div className="contentManagementEdit">
         <div>
-          <label for="tituloMaterial">Titulo del material</label>
-          <input type="text" id="tituloMaterial" />
-          <label for="mensajeAdministrador">Mensaje al administrador</label>
-          <textarea id="mensajeAdministrador"></textarea>
-          <label for="ejercicioVinculado">Ejercicio vinculado</label>
-          <input type="text" id="ejercicioVinculado" />
-          <label id="etiquetaEjericicioVinculado"></label>
+          <button>Sugerir</button>
+          <button>Guardar</button>
+          <button>Cancelar</button>
         </div>
-        <ReactQuill theme="snow" />
-      </form>
+        <form>
+          <div>
+            <div>
+              <label>Titulo del material</label>
+              <input type="text" id="tituloMaterial" />
+            </div>
+            <div>
+              <label>Mensaje al administrador</label>
+              <textarea id="mensajeAdministrador"></textarea>
+            </div>
+            <div>
+              <label>Ejercicio vinculado</label>
+              <input type="text" id="ejercicioVinculado" />
+            </div>
+            <div>
+              <label id="etiquetaEjericicioVinculado"></label>
+            </div>
+            <ReachText />
+          </div>
+        </form>
+      </div>
     </>
   );
 }
