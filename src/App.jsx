@@ -1,8 +1,11 @@
 import { useState } from "react";
-import Navigate from "./components/partials/Navigate";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ContentManagementEdit from "./components/contentManager/ContentManagementEdit";
+import ContentManagement from "./components/contentManager/ContentManagement";
+import AdminPanel from "./components/adminPersonal/AdminPanel";
 import Header from "./components/partials/Header";
+import Navigate from "./components/partials/Navigate";
+
 import "./App.css";
 
 function App() {
@@ -24,9 +27,10 @@ function App() {
         </div>
         <div className="content">
           <Routes>
-            <Route path="/" element={<ContentManagementEdit />} />
-            <Route path="/contentManagement" element={<ContentManagementEdit />}>
-              <Route path="edit/:id" element={<ContentManagementEdit />} />
+            <Route path="/login" element={<ContentManagementEdit />}></Route>
+            <Route path="/admin" element={<AdminPanel/>}/>
+            <Route path="/manager" element={<ContentManagement/>}>
+              <Route path="/edit/:id" element={<ContentManagementEdit />} />
             </Route>
           </Routes>
         </div>
