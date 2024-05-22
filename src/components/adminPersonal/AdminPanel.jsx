@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AdminPanel() {
+export default function AdminPanel() {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -169,5 +169,3 @@ function AdminPanel() {
     </div>
   );
 }
-
-export default AdminPanel;

@@ -7,35 +7,65 @@ import Header from "./components/partials/Header";
 import Navigate from "./components/partials/Navigate";
 
 import "./App.css";
+import { AuthProvider } from "./context/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   const navItems = [
     { name: "Estadisticas", link: "/", rol: "admin" },
     { name: "Sugerencia de contenidos", link: "/", rol: "admin" },
     { name: "Contenidos desplegados", link: "/", rol: "admin" },
-    { name: "Personal", link: "/", rol: "admin" },
-    { name: "Gestion de contenidos", link: "/", rol: "gestor de contenidos" },
-    { name: "feedback", link: "/", rol: "gestor de contenidos" },
+    { name: "Personal", link: "/adminPanel", rol: "admin" },
+    { name: "Gestion de contenidos", link: "/", rol: "manager" },
+    { name: "feedback", link: "/", rol: "manager" },
   ];
 
   return (
-    <>
-      <Header />
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
+        <Header />
         <div className="navbar">
           <Navigate items={navItems} />
         </div>
         <div className="content">
           <Routes>
-            <Route path="/login" element={<ContentManagementEdit />}></Route>
-            <Route path="/admin" element={<AdminPanel/>}/>
-            <Route path="/manager" element={<ContentManagement/>}>
-              <Route path="/edit/:id" element={<ContentManagementEdit />} />
+            <Route
+              path="/login"
+              element={
+                <ProtectedRoute>
+                  <ContentManagementEdit />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/manager"
+              element={
+                <ProtectedRoute>
+                  <ContentManagementEdit />
+                </ProtectedRoute>
+              }
+            >
+              <Route
+                path="/edit/:id"
+                element={
+                  <ProtectedRoute>
+                    <ContentManagementEdit />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminPanel />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
-      </BrowserRouter>
-    </>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
