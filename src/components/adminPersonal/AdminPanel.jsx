@@ -1,45 +1,96 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "./AdminPanel.css";
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 export default function AdminPanel() {
-  const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const [users, setUsers] = useState([
     {
-      name: 'Juan Pérez',
-      email: 'juanitop@gmail.com',
-      createdAt: '12/02/2024',
+      name: "Juan Pérez",
+      email: "juanitop@gmail.com",
+      createdAt: "12/02/2024",
       active: true,
     },
     {
-      name: 'Julián Fermín',
-      email: 'juanitop@gmail.com',
-      createdAt: '08/01/2024',
+      name: "Julián Fermín",
+      email: "juanitop@gmail.com",
+      createdAt: "08/01/2024",
       active: true,
     },
     {
-      name: 'Gerardo Maldonado',
-      email: 'juanitop@gmail.com',
-      createdAt: '02/06/2024',
+      name: "Gerardo Maldonado",
+      email: "juanitop@gmail.com",
+      createdAt: "02/06/2024",
       active: true,
     },
     {
-      name: 'Jesús Abelardo Herrera',
-      email: 'juanitop@gmail.com',
-      createdAt: '03/11/2024',
+      name: "Jesús Abelardo Herrera",
+      email: "juanitop@gmail.com",
+      createdAt: "03/11/2024",
       active: false,
     },
   ]);
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     // Validar datos
-    // Guardar usuario en la base de datos
-    // Actualizar el estado de los usuarios
-    console.log('Usuario creado:', {
+    if (name === "" || lastName === "" || email === "" || password === "") {
+      setModalMessage("Por favor, complete todos los campos.");
+      setModalIsOpen(true);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setModalMessage("Las contraseñas no coinciden.");
+      setModalIsOpen(true);
+      return;
+    }
+
+    // Crear usuario
+    const newUser = {
+      name: `${name} ${lastName}`,
+      email: email,
+      createdAt: new Date().toLocaleDateString(),
+      active: true,
+    };
+
+    if (editIndex === null) {
+      // Crear un nuevo usuario
+      setUsers([...users, newUser]);
+    } else {
+      // Actualizar el usuario existente
+      const newUsers = [...users];
+      newUsers[editIndex] = newUser;
+      setUsers(newUsers);
+      setEditIndex(null);
+    }
+
+    // Limpiar campos
+    setName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  
+    // Mostrar mensaje de éxito
+
+    console.log("Usuario creado:", {
       name,
       lastName,
       email,
@@ -60,68 +111,92 @@ export default function AdminPanel() {
     setUsers(newUsers);
   };
 
+  const handleEditUser = (index) => {
+    const user = users[index];
+    const [name, lastName] = user.name.split(" ");
+    setName(name);
+    setLastName(lastName);
+    setEmail(user.email);
+    // No puedes obtener la contraseña del usuario porque está encriptada
+    setIsVisible(true);
+    setEditIndex(index);
+  };
+
   return (
     <div className="container">
-    {/* Aquí va el código de la barra de navegación */}
-    {/* <Navbar /> */}
       <div className="main">
         <h2>Control de administrador</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Nombre(s)</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="ej. Juanito"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Apellidos</label>
-            <input
-              type="text"
-              id="lastName"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              placeholder="ej. Pérez Pérez"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Correo electrónico</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="ej. kevin123@ejemplo.com"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirmar contraseña</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
-          <button type="button" className="cancel-button">
-            CANCELAR
-          </button>
-          <button type="submit" className="save-button">
-            Guardar
-          </button>
-        </form>
+        <div>
+          {!isVisible && (
+            <button className="add" onClick={toggleVisibility}>
+              {isVisible ? "Ocultar formulario" : "AGREGAR"}
+            </button>
+          )}
+          {isVisible && (
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Nombre(s)</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="ej. Juanito"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastName">Apellidos</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="ej. Pérez Pérez"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="ej. kevin123@ejemplo.com"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Contraseña</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group-button">
+              <button
+                type="button"
+                className="cancel-button"
+                onClick={() => setIsVisible(false)}
+              >
+                CANCELAR
+              </button>
+              <button type="submit" className="save-button">
+                GUARDAR
+              </button>
+              </div>
+            </form>
+          )}
+        </div>
         <h2>Gestores registrados</h2>
         <table>
           <thead>
@@ -146,19 +221,30 @@ export default function AdminPanel() {
                 </td>
                 <td>
                   <button
-                    className="action-button"
-                    onClick={() => handleToggleActive(index)}
+                    className="action-button-edit"
+                    onClick={() => handleEditUser(index)}
                   >
-                    <i className={`fas fa-${user.active ? 'toggle-on' : 'toggle-off'}`}></i>
+                    <i className="fas fa-pencil-alt">editar</i>
                   </button>
                   <button
-                    className="action-button"
+                    className={`action-button-active ${
+                      user.active ? "" : "yellow"
+                    }`}
+                    onClick={() => handleToggleActive(index)}
+                  >
+                    <i
+                      className={`fas fa-${
+                        user.active ? "toggle-on" : "toggle-off"
+                      }`}
+                    >
+                      desactivar
+                    </i>
+                  </button>
+                  <button
+                    className="action-button-delete"
                     onClick={() => handleDeleteUser(index)}
                   >
-                    <i className="fas fa-trash-alt"></i>
-                  </button>
-                  <button className="action-button">
-                    <i className="fas fa-pencil-alt"></i>
+                    <i className="fas fa-trash-alt">borrar</i>
                   </button>
                 </td>
               </tr>
@@ -166,6 +252,21 @@ export default function AdminPanel() {
           </tbody>
         </table>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        className="modal"
+        contentLabel="Error Message"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)'
+          }
+        }}
+      >
+        <h2>Error</h2>
+        <p>{modalMessage}</p>
+        <button onClick={() => setModalIsOpen(false)}>Cerrar</button>
+      </Modal>
     </div>
   );
 }

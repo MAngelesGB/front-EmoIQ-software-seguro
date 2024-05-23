@@ -1,12 +1,208 @@
+:root{
+    --azul-oscuro: #033859;
+    --azul: #13DCF2;
+    --verde-aqua: #11D9A0;
+    --amarillo: #F2C335;
+    --blanco-hueso: #F2F2F2;
+    --rojo: #DE3E0B;
+}
+
 @font-face {
     font-family: "gg-sans-bold";
-    src: url("/public/fonts/gg-sans-bold.ttf") format("truetype");
+    src: url("../../assets/gg-sans/gg-sans-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: bold;
+}
+
+@font-face {
+    font-family: "gg-sans-medium";
+    src: url("../../assets/gg-sans/gg-sans-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: regular;
+}
+
+@font-face {
+    font-family: "gg-sans-regular";
+    src: url("../../assets/gg-sans/gg-sans-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "gg-sans-semibold";
+    src: url("../../assets/gg-sans/gg-sans-Semibold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
 }
 
 .main h2 {
     color: #033859;
     font-size: 32px;
-    font-family: "gg-sans-bold";
+    font-family: "gg-sans-semibold", monospace;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70vw;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+}
+
+.form-group label {
+    font-family: "gg-sans-medium", regular;
+    font-size: 20px;
+    color: var(--azul-oscuro);
+    margin-left: 10px;
+}
+
+.form-group input {
+    background-color: #F2F4F7;
+    width: 20vw;
+    height: 55px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px;
+    padding-left: 20px;
+    font-family: "gg-sans-medium", regular;
+    font-size: 16px;
+    color: var(--azul-oscuro);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.form-group-button {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-group-button button {
+    width: 9vw;
+    height: 55px;
+}
+
+/* ------------------------Buttons--------------------- */
+.add {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    background-color: var(--verde-aqua);
+    border: none;
+    border-radius: 20px;
+    width: 130px;
+    padding: 10px 20px;
+}
+.cancel-button {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: #F2F2F2;
+    background-color: var(--rojo);
+    border: none;
+    border-radius: 20px;
+    width: 130px;
+    padding: 10px 20px;
+}
+
+.save-button {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    background-color: var(--verde-aqua);
+    border: none;
+    border-radius: 20px;
+    width: 130px;
+    padding: 10px 20px;
+}
+.action-button-edit {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    background-color: var(--verde-aqua);
+    border: none;
+    border-radius: 20px;
+    width: 20px;
+    padding: 10px 20px;
+    margin-left: 30px;
+}
+
+.action-button-active {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    background-color: var(--azul);
+    border: none;
+    border-radius: 20px;
+    width: 20px;
+    padding: 10px 20px;
+}
+.yellow {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    background-color: var(--amarillo);
+    border: none;
+    border-radius: 20px;
+    width: 20px;
+    padding: 10px 20px;
+}
+
+.action-button-delete {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--blanco-hueso);
+    background-color: var(--rojo);
+    border: none;
+    border-radius: 20px;
+    width: 20px;
+    padding: 10px 20px;
+}
+
+/* ------------------------Modal--------------------- */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--blanco-hueso);
+    border-radius: 4px;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal h2 {
+    font-family: "gg-sans-bold", monospace;
+    color: var(--azul-oscuro);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: "gg-sans-regular", monospace;
+    color: var(--azul-oscuro);
+}
+.modal button {
+    font-family: "gg-sans-regular", monospace;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    background-color: var(--verde-aqua);
+    border: none;
+    border-radius: 20px;
+    width: 130px;
+    padding: 10px 20px;
+    margin-right: 10px;
 }
