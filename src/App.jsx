@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+//import { useState } from "react";
+import {BrowserRouter, Routes, Route } from "react-router-dom";
 import ContentManagementEdit from "./components/contentManager/ContentManagementEdit";
-import ContentManagement from "./components/contentManager/ContentManagement";
+//import ContentManagement from "./components/contentManager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
 import Header from "./components/partials/Header";
 import Navigate from "./components/partials/Navigate";
 
 import "./App.css";
-import { AuthProvider } from "./context/AuthContext";
+//import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
         <Header />
         <div className="navbar">
           <Navigate items={navItems} />
@@ -38,7 +37,7 @@ function App() {
               }
             />
             <Route
-              path="/manager"
+              path="/manager/*"
               element={
                 <ProtectedRoute>
                   <ContentManagementEdit />
@@ -46,7 +45,7 @@ function App() {
               }
             >
               <Route
-                path="/edit/:id"
+                path="manager/edit/:id"
                 element={
                   <ProtectedRoute>
                     <ContentManagementEdit />
@@ -64,8 +63,7 @@ function App() {
             />
           </Routes>
         </div>
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
   );
 }
 

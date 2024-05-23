@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+//import { useAuth } from "../context/AuthContext";
 
 export function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth();
+  /*const { user, loading } = useAuth();
 
   if (loading) return <h1>Loading</h1>;
 
@@ -10,7 +10,7 @@ export function ProtectedRoute({ children }) {
 
   if(user.claim.type === "admin") return <Navigate to="/admin" />;
   
-  if(user.claim.type === "manager") return <Navigate to="/manager" />;
+  if(user.claim.type === "manager") return <Navigate to="/manager" />;*/
 
   return <>{children}</>;
 }
