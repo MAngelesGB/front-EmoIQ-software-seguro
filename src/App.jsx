@@ -8,6 +8,7 @@ import Layout from './components/partials/Layout';
 
 import { useAuth } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Feedback from './components/contentManager/Feedback';
 
 function App() {
   const { user } = useAuth();
@@ -36,11 +37,15 @@ function App() {
         <Route path="/admin" element={<ProtectedRoute isAllowed={role === 'admin'}><Layout /></ProtectedRoute>}>
           <Route index element={<Navigate to="/admin/personnel" replace />} />
           <Route path="personnel" element={<AdminPanel />} />
+          <Route path="statistics" element={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}><h1>Estadisticas</h1></div>} />
+          <Route path="content-suggestions" element={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}><h1>Sugerencias de contenido</h1></div>} />
+          <Route path="content" element={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}><h1>Contenidos</h1></div>} />
         </Route>
         <Route path="/manager" element={<ProtectedRoute isAllowed={role === 'manager'}><Layout /></ProtectedRoute>}>
-          <Route index element={<Navigate to="/manager/content-management" />} />
-          <Route path="content-management" element={<ContentManagement />} />
-          <Route path="content-management/edit/:id" element={<ContentManagementEdit />} />
+          <Route index element={<Navigate to="/manager/content" />} />
+          <Route path="feedback" element={<Feedback />} />
+          <Route path="content" element={<ContentManagement />} />
+          <Route path="content/edit/:id" element={<ContentManagementEdit />} />
         </Route>
         <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>

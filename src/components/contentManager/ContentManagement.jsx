@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
 
 export default function ContentManagement() {
+  const contentData = [];
+
   const truncateContent = (content, wordLimit) => {
     const words = content.split(' ');
     if (words.length <= wordLimit) {
@@ -32,51 +35,49 @@ export default function ContentManagement() {
         </div>
       ))}
       </div>
-      <div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', height: '100%' }}>
         <div>
+          
           <div>
-            <p>Conciencia emocional</p>
-            <p>
-              Conoce y es consciente de las emociones propias y ajenas.
-            </p>
+            <div>
+              <p>Conciencia emocional</p>
+              <p>
+                Conoce y es consciente de las emociones propias y ajenas.
+              </p>
+            </div>
           </div>
-            <img />
-        </div>
-        <div>
           <div>
-            <p>Regulación emocional</p>
-            <p>
-              Gestiona y ajusta tus emociones.
-            </p>
+            <div>
+              <p>Regulación emocional</p>
+              <p>
+                Gestiona y ajusta tus emociones.
+              </p>
+            </div>
           </div>
-            <img />
-        </div>
-        <div>
           <div>
-            <p>Autonomía emocional</p>
-            <p>
-              Autogestiona emociones y pensamientos.
-            </p>
+            <div>
+              <p>Autonomía emocional</p>
+              <p>
+                Autogestiona emociones y pensamientos.
+              </p>
+            </div>
           </div>
-            <img />
-        </div>
-        <div>
           <div>
-            <p>Competencia social</p>
-            <p>
-              Establece y mantiene relaciones interpersonales.
-            </p>
+            <div>
+              <p>Competencia social</p>
+              <p>
+                Establece y mantiene relaciones interpersonales.
+              </p>
+            </div>
           </div>
-            <img />
-        </div>
-        <div>
           <div>
-            <p>Competencia para la vida y el bienestar</p>
-            <p>
-              Afronta retos de manera positiva y constructiva.
-            </p>
+            <div>
+              <p>Competencia para la vida y el bienestar</p>
+              <p>
+                Afronta retos de manera positiva y constructiva.
+              </p>
+            </div>
           </div>
-            <img />
         </div>
       </div>
     </>

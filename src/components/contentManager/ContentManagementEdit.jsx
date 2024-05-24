@@ -1,4 +1,4 @@
-import ReachText from "../partials/RichText";
+import RichText from "../partials/RichText";
 import './ContentManagementEdit.css';
 export default function ContentManagementEdit() {
   return (
@@ -15,7 +15,7 @@ export default function ContentManagementEdit() {
               <label>Titulo del material</label>
               <input type="text" id="tituloMaterial" />
             </div>
-            <div>
+            <div> 
               <label>Mensaje al administrador</label>
               <textarea id="mensajeAdministrador"></textarea>
             </div>
@@ -26,7 +26,7 @@ export default function ContentManagementEdit() {
             <div>
               <label id="etiquetaEjericicioVinculado"></label>
             </div>
-            <ReachText />
+            <RichText />
           </div>
         </form>
       </div>

@@ -28,7 +28,7 @@ function Layout({ children }) {
 
   return (
     <div className="layout-container">
-      <Header />
+      <Header role={role} />
       <div className="main-wrapper">
         <SideNav items={navItems.filter(item => item.role === role)} />
         <main className="main-content">
