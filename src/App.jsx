@@ -4,11 +4,12 @@ import ContentManagementEdit from "./components/contentManager/ContentManagement
 //import ContentManagement from "./components/contentManager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
 import Header from "./components/partials/Header";
-import Navigate from "./components/partials/Navigate";
+import Navigate from "./components/partials/SideNav";
 
 import "./App.css";
 //import { AuthProvider } from "./context/AuthContext";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   const navItems = [
@@ -32,7 +33,7 @@ function App() {
               path="/login"
               element={
                 <ProtectedRoute>
-                  <ContentManagementEdit />
+                  <LoginPage />
                 </ProtectedRoute>
               }
             />

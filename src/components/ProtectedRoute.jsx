@@ -1,16 +1,9 @@
-import { Navigate } from "react-router-dom";
-//import { useAuth } from "../context/AuthContext";
+import { Navigate, Outlet } from 'react-router-dom';
 
-export function ProtectedRoute({ children }) {
-  /*const { user, loading } = useAuth();
+function ProtectedRoute({ children, isAllowed, redirectTo = '/login' }) {
+  // if (!isAllowed) return <Navigate to={redirectTo} replace />;
 
-  if (loading) return <h1>Loading</h1>;
-
-  if (!user) return <Navigate to="/login" />;
-
-  if(user.claim.type === "admin") return <Navigate to="/admin" />;
-  
-  if(user.claim.type === "manager") return <Navigate to="/manager" />;*/
-
-  return <>{children}</>;
+  return children ? children : <Outlet />;
 }
+
+export default ProtectedRoute;

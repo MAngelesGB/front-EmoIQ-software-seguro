@@ -1,4 +1,4 @@
-import ReachText from "../partials/ReachText";
+import ReachText from "../partials/RichText";
 import './ContentManagementEdit.css';
 export default function ContentManagementEdit() {
   return (

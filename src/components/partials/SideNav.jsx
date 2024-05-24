@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
-import './Navigate.css'
-export default function Navigate({items}) {
+import './SideNav.css'
+
+export default function SideNav({items}) {
   return (
     <>
     <aside>
