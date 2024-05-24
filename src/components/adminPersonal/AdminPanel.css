@@ -35,7 +35,16 @@
     font-style: normal;
 }
 
+.admin-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "gg-sans-semibold", monospace;
+    margin-top: 50px;
+}
+
 .main h2 {
+    justify-content: space-between;
     color: #033859;
     font-size: 32px;
     font-family: "gg-sans-semibold", monospace;
@@ -43,7 +52,7 @@
 
 form {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
@@ -90,15 +99,25 @@ form {
 }
 
 /* ------------------------Buttons--------------------- */
-.add {
+
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.add-button {
     font-family: "gg-sans-regular", monospace;
     font-size: 18px;
     color: var(--azul-oscuro);
     background-color: var(--verde-aqua);
     border: none;
     border-radius: 20px;
-    width: 130px;
+    height: 55px;
+    width: 180px;
     padding: 10px 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .cancel-button {
     font-family: "gg-sans-regular", monospace;
@@ -107,8 +126,10 @@ form {
     background-color: var(--rojo);
     border: none;
     border-radius: 20px;
-    width: 130px;
-    padding: 10px 20px;
+    height: 55px;
+    width: 180px;
+    padding: 10px 20px;    
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .save-button {
@@ -118,8 +139,10 @@ form {
     background-color: var(--verde-aqua);
     border: none;
     border-radius: 20px;
-    width: 130px;
+    height: 55px;
+    width: 180px;
     padding: 10px 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .action-button-edit {
     font-family: "gg-sans-regular", monospace;
@@ -127,10 +150,11 @@ form {
     color: var(--azul-oscuro);
     background-color: var(--verde-aqua);
     border: none;
-    border-radius: 20px;
-    width: 20px;
-    padding: 10px 20px;
-    margin-left: 30px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    margin: 2.5px;
 }
 
 .action-button-active {
@@ -139,9 +163,11 @@ form {
     color: var(--azul-oscuro);
     background-color: var(--azul);
     border: none;
-    border-radius: 20px;
-    width: 20px;
-    padding: 10px 20px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;    
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    margin: 2.5px;
 }
 .yellow {
     font-family: "gg-sans-regular", monospace;
@@ -149,9 +175,11 @@ form {
     color: var(--azul-oscuro);
     background-color: var(--amarillo);
     border: none;
-    border-radius: 20px;
-    width: 20px;
-    padding: 10px 20px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    margin: 2.5px;
 }
 
 .action-button-delete {
@@ -160,9 +188,11 @@ form {
     color: var(--blanco-hueso);
     background-color: var(--rojo);
     border: none;
-    border-radius: 20px;
-    width: 20px;
-    padding: 10px 20px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    margin: 2.5px;
 }
 
 /* ------------------------Modal--------------------- */
@@ -205,4 +235,49 @@ form {
     width: 130px;
     padding: 10px 20px;
     margin-right: 10px;
+}
+
+.registered-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px 50px 50px 50px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* ------------------------Table--------------------- */
+.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #FFFFFF;
+}
+
+.table table {
+    width: 70vw;
+    border-collapse: collapse;
+
+}
+
+.table th {
+    background-color: var(--blanco-hueso);
+    color: var(--azul-oscuro);
+    font-family: "gg-sans-semibold", monospace;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.table td {
+    color: var(--azul-oscuro);
+    font-family: "gg-sans-medium", monospace;
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
 }
