@@ -3,31 +3,17 @@ import {BrowserRouter, Routes, Route } from "react-router-dom";
 import ContentManagementEdit from "./components/contentManager/ContentManagementEdit";
 //import ContentManagement from "./components/contentManager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
-import Header from "./components/partials/Header";
-import Navigate from "./components/partials/SideNav";
 
 import "./App.css";
 //import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from './pages/LoginPage/LoginPage';
+import Layout from './components/partials/Layout';
 
 function App() {
-  const navItems = [
-    { name: "Estadisticas", link: "/", rol: "admin" },
-    { name: "Sugerencia de contenidos", link: "/", rol: "admin" },
-    { name: "Contenidos desplegados", link: "/", rol: "admin" },
-    { name: "Personal", link: "/adminPanel", rol: "admin" },
-    { name: "Gestion de contenidos", link: "/", rol: "manager" },
-    { name: "feedback", link: "/", rol: "manager" },
-  ];
-
   return (
     <BrowserRouter>
-        <Header />
-        <div className="navbar">
-          <Navigate items={navItems} />
-        </div>
-        <div className="content">
+        <Layout>
           <Routes>
             <Route
               path="/login"
@@ -63,7 +49,7 @@ function App() {
               }
             />
           </Routes>
-        </div>
+        </Layout>
       </BrowserRouter>
   );
 }

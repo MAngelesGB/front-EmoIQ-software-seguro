@@ -1,20 +1,28 @@
-import {Link} from 'react-router-dom'
-import './SideNav.css'
+import { NavLink } from 'react-router-dom';
+import './SideNav.css';
 
-export default function SideNav({items}) {
+function SideNav({ items }) {
   return (
-    <>
-    <aside>
+    <div className="sideNav">
       <nav>
-        <ul>
-          {items.map((item, index) => (
-              <li key={index}>
-                <Link to={item.link}>{item.name}</Link>
-              </li>
+        <ul className="sideNav-list">
+          {items.map(item => (
+            <li key={item.name} className="sideNav-list-item">
+              <NavLink to={item.link} className="sideNav-item">
+                <svg
+                  className="sideNav-icon"
+                  dangerouslySetInnerHTML={{ __html: item.icon }} />
+                <span>
+                  {item.name}
+                </span>
+              </NavLink>
+            </li>
           ))}
         </ul>
       </nav>
-    </aside>
-    </>
-  )
+      <button className="logout-button">CERRAR SESIÓN</button>
+    </div>
+  );
 }
+
+export default SideNav;
