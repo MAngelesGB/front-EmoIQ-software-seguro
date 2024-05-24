@@ -136,66 +136,77 @@ export default function AdminPanel() {
             </div>
           </div>
           {isVisible && (
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Nombre(s)</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="ej. Juanito"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName">Apellidos</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  placeholder="ej. Pérez Pérez"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Correo electrónico</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ej. kevin123@ejemplo.com"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Contraseña</label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-              <button
-                type="button"
-                className="cancel-button"
-                onClick={() => setIsVisible(false)}
-              >
-                CANCELAR
-              </button>
-              <button type="submit" className="save-button">
-                GUARDAR
-              </button>
-            </form>
+            <div className="form-container">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="name">Nombre(s)</label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="ej. Juanito"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="lastName">Apellidos</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="ej. Pérez Pérez"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Correo electrónico</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="ej. kevin123@ejemplo.com"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Contraseña</label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="role">Rol</label>
+                  <select name="role" id="role">
+                    <option value="Administrador">Administrador</option>  
+                    <option value="Gestor de contenidos">Gestor de contenidos</option>
+                  </select>
+                </div>
+                <div className="form-group-button">
+                <button
+                  type="button"
+                  className="cancel-button"
+                  onClick={() => setIsVisible(false)}
+                >
+                  CANCELAR
+                </button>
+                <button type="submit" className="save-button">
+                  GUARDAR
+                </button>
+                </div>
+              </form>
+            </div>
           )}
         </div>
         <div className="registered-list">
