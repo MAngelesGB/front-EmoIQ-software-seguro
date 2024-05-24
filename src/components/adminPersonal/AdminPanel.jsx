@@ -136,7 +136,7 @@ export default function AdminPanel() {
             </div>
           </div>
           {isVisible && (
-            <form onSubmit={handleSubmit}>
+            <form className="admin-panel-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Nombre(s)</label>
                 <input

@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import backgroundImg from '../../assets/background.png';
-// import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import './LoginPage.css';
 
 function LoginPage() {
-  // const { login } = useAuth();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log('Submitting form...');
-    // try {
-    //   const userCredentials = await login(email, password);
-    //   console.log(userCredentials);
-    // } catch (err) {
-    //   console.error(err.message)
-    // }
+
+    try {
+      const userCredentials = await login(email, password);
+      console.log(userCredentials);
+    } catch (err) {
+      console.error(err.message)
+    }
   };
 
   return (

@@ -1,7 +1,20 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import './SideNav.css';
 
 function SideNav({ items }) {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleClick = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (err) {
+      console.err('Error while signing out');
+    }
+  };
+
   return (
     <div className="sideNav">
       <nav>
@@ -20,7 +33,7 @@ function SideNav({ items }) {
           ))}
         </ul>
       </nav>
-      <button className="logout-button">CERRAR SESIÓN</button>
+      <button className="logout-button" onClick={handleClick}>CERRAR SESIÓN</button>
     </div>
   );
 }
