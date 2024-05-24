@@ -1,0 +1,212 @@
+:root{
+  --azul-oscuro: #033859;
+  --azul: #13DCF2;
+  --verde-aqua: #11D9A0;
+  --amarillo: #F2C335;
+  --blanco-hueso: #F2F2F2;
+  --rojo: #DE3E0B;
+}
+
+@font-face {
+  font-family: "gg-sans-semibold";
+  src: url("../../assets/gg-sans/gg-sans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gg-sans-regular";
+  src: url("../../assets/gg-sans/gg-sans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.contenido-material{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around; 
+  align-items: center; 
+  margin: 0 auto;
+  font-family: "gg-sans-regular", monospace;
+}
+
+.contenido-material .group-contenido{
+  width: 70%;
+  margin-right:45px;
+}
+
+.group-contenido .layer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self:flex-start;
+  width:100%;
+}
+
+.layer .lecturas{
+  display: flex;
+  float:left;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  width: 50%;
+  height: 50px;
+  background-color: #F6F6F6;
+  border-radius: 10px;
+}
+
+.layer .ejercicios{
+  display: flex;
+  float:right;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+  height: 50px;
+  background-color: #D9D9D9;
+  border-top-right-radius: 10px;
+}
+
+.contenido-material .ruta-aprendizaje{
+  width: 50%;
+  margin:15px
+}
+
+.group-contenido{
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F6F6F6;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  border-radius: 10px;
+  height: 85vh;
+  margin-top: 30px;
+  color: var(--azul-oscuro);
+}
+
+.group-contenido .items{
+  margin-top:20px;
+  margin-bottom:20; 
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F6F6;
+  width: 95%;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.group-contenido .items h3{
+  font-family: "gg-sans-semibold", monospace;
+  color:var(--azul-oscuro);
+}
+
+
+.group-contenido .items .btn-options{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.group-contenido .items .btn-options .btn-detalles{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--azul-oscuro);
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.group-contenido .items .btn-options .btn-editar{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 10px;
+  background-color: var(--azul);
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.group-contenido .items .btn-options .btn-editar span{
+  margin-left: 10px;
+}
+
+.group-contenido .items button{
+  width: 100px;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.items .item-contenido-fecha{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.items .item-contenido-fecha label{
+  margin:0;
+}
+
+.items .item-contenido{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.ruta-aprendizaje{
+  display: flex;
+  flex-direction: column;
+}
+  
+.ruta-aprendizaje .tema{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #F6F6F6;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+  width:450px; 
+  height:fit-content;
+}
+
+.ruta-aprendizaje .tema-contenido{
+  width:75%
+}
+
+.ruta-aprendizaje img{
+  width:65px;
+  height:60px;
+}
+
+.ruta-aprendizaje .competencias{
+  display:flex; 
+  flex-direction: column;
+  margin-left: 20px; 
+  margin-bottom: 10px; 
+}
+
+.agregar-contenido button {
+  display: flex;;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--azul-oscuro);
+  color: #FFFFFF;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.agregar-contenido button span{
+  margin-left: 10px;
+}

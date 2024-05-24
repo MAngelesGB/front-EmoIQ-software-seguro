@@ -253,3 +253,8 @@
     padding: 10px;
     text-align: center;
 }
+
+.table-manager-actions {
+    display: flex;
+    justify-content: center;
+}

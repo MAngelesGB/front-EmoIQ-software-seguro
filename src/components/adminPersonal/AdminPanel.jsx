@@ -224,7 +224,7 @@ export default function AdminPanel() {
                         <span className="inactive">Desactivada</span>
                       )}
                     </td>
-                    <td>
+                    <td className="table-manager-actions">
                       <button
                         className="action-button-edit"
                         onClick={() => handleEditUser(index)}

@@ -1,7 +1,7 @@
 import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import ContentManagementEdit from "./components/contentManager/ContentManagementEdit";
-import ContentManagement from "./components/contentManager/ContentManagement";
+import ContentManagementEdit from "./components/contentManager/edit/ContentManagementEdit";
+import ContentManagement from "./components/contentManager/manager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
 import LoginPage from './pages/LoginPage/LoginPage';
 import Layout from './components/partials/Layout';
