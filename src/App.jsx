@@ -1,7 +1,7 @@
 //import { useState } from "react";
 import {BrowserRouter, Routes, Route } from "react-router-dom";
-import ContentManagementEdit from "./components/contentManager/ContentManagementEdit";
-//import ContentManagement from "./components/contentManager/ContentManagement";
+import ContentManagementEdit from "./components/contentManager/edit/ContentManagementEdit";
+import ContentManagement from "./components/contentManager/manager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
 import Header from "./components/partials/Header";
 import Navigate from "./components/partials/Navigate";
@@ -37,15 +37,15 @@ function App() {
               }
             />
             <Route
-              path="/manager/*"
+              path="/manager"
               element={
                 <ProtectedRoute>
-                  <ContentManagementEdit />
+                  <ContentManagement />
                 </ProtectedRoute>
               }
             >
               <Route
-                path="manager/edit/:id"
+                path="manager/edit"
                 element={
                   <ProtectedRoute>
                     <ContentManagementEdit />
