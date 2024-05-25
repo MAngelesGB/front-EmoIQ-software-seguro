@@ -45,20 +45,43 @@
     padding: 5px;
     padding-left: 20px;
     font-family: "gg-sans-medium", regular;
-    font-size: 16px;
+    font-size: 20px;
     color: var(--azul-oscuro);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.form-group-button {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
+.form-group select {
+    appearance: none; /* Elimina la apariencia predeterminada */
+    -webkit-appearance: none; /* Necesario para Safari */
+    -moz-appearance: none; /* Necesario para Firefox */
+    background: url('../../../public/images/arrow.png') no-repeat right center; /* Agrega tu propia imagen de flecha */
+    background-color: #F2F4F7;
+    width: 20vw;
+    height: 55px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px;
+    padding-left: 20px;
+    font-family: "gg-sans-medium", regular;
+    font-size: 20px;
+    color: var(--azul-oscuro);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.form-group-button button {
-    width: 9vw;
-    height: 55px;
+
+
+.form-group select option {
+    font-family: "gg-sans-medium", regular;
+    font-size: 20px;
+    color: var(--azul-oscuro);
+}
+
+.form-group-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto; 
+    margin-top: 20px;
 }
 
 /* ------------------------Buttons--------------------- */
@@ -96,6 +119,7 @@
     width: 180px;
     padding: 10px 20px;    
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin: 10px;
 }
 
 .save-button {
@@ -112,6 +136,7 @@
     width: 180px;
     padding: 10px 20px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin: 10px;
 }
 .action-button-edit {
     display: flex;
@@ -255,6 +280,10 @@
 }
 
 .table-manager-actions {
+    display: flex;
+    justify-content: center;
+}
+.form-container {
     display: flex;
     justify-content: center;
 }
