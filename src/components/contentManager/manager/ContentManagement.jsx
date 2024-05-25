@@ -14,6 +14,12 @@ export default function ContentManagement() {
           </div>
         </div>
         
+        <div className="buscar">
+          <label htmlFor="">Buscar:</label>
+          <input type="text" id="buscar" />
+          <button>BUSCAR</button> 
+        </div>
+
         <div className="items">
           <div className="item-contenido">
             <h3>Título</h3>
@@ -57,7 +63,7 @@ export default function ContentManagement() {
               Conoce y es consciente de las emociones propias y ajenas.
             </p>
           </div>
-            <img src="../../../public/images/conciencia-emocional.png"/>
+            <img src="../../../images/conciencia-emocional.png"/>
         </div>
         <div className="tema">
           <div className="tema-contenido">
@@ -66,7 +72,7 @@ export default function ContentManagement() {
               Gestiona y ajusta tus emociones.
             </p>
           </div>
-            <img src="../../../public/images/regulacion-emocional.png"/>
+            <img src="../../../images/regulacion-emocional.png"/>
         </div>
         <div className="tema">
           <div className="tema-contenido">
@@ -75,7 +81,7 @@ export default function ContentManagement() {
               Autogestiona emociones y pensamientos.
             </p>
           </div>
-            <img src="../../../public/images/autonomia-emocional.png" />
+            <img src="../../../images/autonomia-emocional.png" />
         </div>
         <div className="tema">
           <div className="tema-contenido">
@@ -84,7 +90,7 @@ export default function ContentManagement() {
               Establece y mantiene relaciones interpersonales.
             </p>
           </div>
-            <img src="../../../public/images/competencia-social.png"/>
+            <img src="../../../images/competencia-social.png"/>
         </div>
         <div className="tema">
           <div  className="tema-contenido">
@@ -93,7 +99,7 @@ export default function ContentManagement() {
               Afronta retos de manera positiva y constructiva.
             </p>
           </div>
-            <img src="../../../public/images/competencia-vida.png"/>
+            <img src="../../../images/competencia-vida.png"/>
         </div>
         <div className="agregar-contenido">
           <button>
