@@ -100,7 +100,7 @@
   border:0px;
   background-color: #F2F4F7;
   color:var(--azul-oscuro); 
-  padding: 5px;
+  padding: 15px;
   margin: 20px;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
 }
