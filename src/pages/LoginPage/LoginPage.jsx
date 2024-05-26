@@ -10,6 +10,9 @@ function LoginPage() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6LchlOYpAAAAAJmtO7SMZDUOMkEkfgR8_oxt1Lhv', {action: 'LOGIN'});
+    });
 
     try {
       const userCredentials = await login(email, password);

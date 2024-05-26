@@ -1,55 +1,48 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AdminPanel.css";
 import Modal from "react-modal";
+import { changeUserStatus, createUser, deleteUser, listUsers, updateUser } from '../../lib/manageUsers';
+import { formatDate } from '../../lib/formatDate';
+import { useAuth } from '../../contexts/AuthContext';
 
 Modal.setAppElement("#root");
 
 export default function AdminPanel() {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("manager");
   const [isVisible, setIsVisible] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  
+  const { user: currentUser } = useAuth();
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const [users, setUsers] = useState([
-    {
-      name: "Juan Pérez",
-      email: "juanitop@gmail.com",
-      createdAt: "12/02/2024",
-      active: true,
-    },
-    {
-      name: "Julián Fermín",
-      email: "juanitop@gmail.com",
-      createdAt: "08/01/2024",
-      active: true,
-    },
-    {
-      name: "Gerardo Maldonado",
-      email: "juanitop@gmail.com",
-      createdAt: "02/06/2024",
-      active: true,
-    },
-    {
-      name: "Jesús Abelardo Herrera",
-      email: "juanitop@gmail.com",
-      createdAt: "03/11/2024",
-      active: false,
-    },
-  ]);
+  const [users, setUsers] = useState([]);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const data = await listUsers();
+        setUsers(data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    getUsers();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Validar datos
-    if (name === "" || lastName === "" || email === "" || password === "") {
+    if (fullname === "" || email === "" || (password === "" && editIndex === null)) {
       setModalMessage("Por favor, complete todos los campos.");
       setModalIsOpen(true);
       return;
@@ -61,28 +54,33 @@ export default function AdminPanel() {
       return;
     }
 
-    // Crear usuario
     const newUser = {
-      name: `${name} ${lastName}`,
+      displayName: fullname,
       email: email,
-      createdAt: new Date().toLocaleDateString(),
-      active: true,
+      role: role
     };
 
-    if (editIndex === null) {
-      // Crear un nuevo usuario
-      setUsers([...users, newUser]);
-    } else {
-      // Actualizar el usuario existente
-      const newUsers = [...users];
-      newUsers[editIndex] = newUser;
-      setUsers(newUsers);
-      setEditIndex(null);
+    try {
+      if (editIndex === null) {
+        // Crear un nuevo usuario
+        newUser.password = password;
+        const result = await createUser(newUser);
+        setUsers([...users, result]);
+      } else {
+        // Actualizar el usuario existente
+        if (password) newUser.password = password;
+        const result = await updateUser({ previousEmail: users[editIndex].email, ...newUser });
+        const newUsers = [...users];
+        newUsers[editIndex] = result;
+        setUsers(newUsers);
+        setEditIndex(null);
+      }
+    } catch (err) {
+      console.error(err);
     }
 
     // Limpiar campos
-    setName("");
-    setLastName("");
+    setFullname("");
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -90,31 +88,42 @@ export default function AdminPanel() {
     // Mostrar mensaje de éxito
 
     console.log("Usuario creado:", {
-      name,
-      lastName,
+      fullname,
       email,
       password,
       confirmPassword,
     });
   };
 
-  const handleDeleteUser = (index) => {
-    const newUsers = [...users];
-    newUsers.splice(index, 1);
-    setUsers(newUsers);
+  const handleDeleteUser = async (index) => {
+    try {
+      await deleteUser({ email: users[index].email });
+      const newUsers = [...users];
+      newUsers.splice(index, 1);
+      setUsers(newUsers);
+    } catch(err) {
+      console.error(err);
+    }
   };
 
-  const handleToggleActive = (index) => {
-    const newUsers = [...users];
-    newUsers[index].active = !newUsers[index].active;
-    setUsers(newUsers);
+  const handleToggleActive = async (index) => {
+    try {
+      const data = {
+        email: users[index].email,
+        disabled: !users[index].disabled
+      };
+      await changeUserStatus(data);
+      const newUsers = [...users];
+      newUsers[index].disabled = !newUsers[index].disabled;
+      setUsers(newUsers);
+    } catch(err) {
+      console.error(err);
+    }
   };
 
   const handleEditUser = (index) => {
     const user = users[index];
-    const [name, lastName] = user.name.split(" ");
-    setName(name);
-    setLastName(lastName);
+    setFullname(user.displayName);
     setEmail(user.email);
     // No puedes obtener la contraseña del usuario porque está encriptada
     setIsVisible(true);
@@ -139,23 +148,13 @@ export default function AdminPanel() {
             <div className="form-container">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">Nombre(s)</label>
+                  <label htmlFor="name">Nombre completo</label>
                   <input
                     type="text"
                     id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="ej. Juanito"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="lastName">Apellidos</label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    placeholder="ej. Pérez Pérez"
+                    value={fullname}
+                    onChange={(e) => setFullname(e.target.value)}
+                    placeholder="ej. Juanito Pérez"
                   />
                 </div>
                 <div className="form-group">
@@ -186,13 +185,17 @@ export default function AdminPanel() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="role">Rol</label>
-                  <select name="role" id="role">
-                    <option value="Administrador">Administrador</option>  
-                    <option value="Gestor de contenidos">Gestor de contenidos</option>
-                  </select>
-                </div>
+                {
+                  // currentUser.role === 'superadmin' &&
+                  true &&
+                  <div className="form-group">
+                    <label htmlFor="role">Rol</label>
+                    <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
+                      <option value="admin">Administrador</option>
+                      <option value="manager">Gestor de contenidos</option>
+                    </select>
+                  </div>
+                }
                 <div className="form-group-button">
                 <button
                   type="button"
@@ -225,14 +228,14 @@ export default function AdminPanel() {
               <tbody>
                 {users.map((user, index) => (
                   <tr key={index}>
-                    <td>{user.name}</td>
+                    <td>{user.displayName}</td>
                     <td>{user.email}</td>
-                    <td>{user.createdAt}</td>
+                    <td>{formatDate(user.creationTime)}</td>
                     <td>
-                      {user.active ? (
-                        <span className="active">Activa</span>
-                      ) : (
+                      {user.disabled ? (
                         <span className="inactive">Desactivada</span>
+                      ) : (
+                        <span className="active">Activa</span>
                       )}
                     </td>
                     <td className="table-manager-actions">
@@ -255,11 +258,11 @@ export default function AdminPanel() {
                       </button>
                       <button
                         className={`action-button-active ${
-                          user.active ? "" : "yellow"
+                          user.disabled ? "yellow" : ""
                         }`}
                         onClick={() => handleToggleActive(index)}
                       >
-                        {user.active ? (
+                        {!user.disabled ? (
                           <svg
                             width="24"
                             height="14"
