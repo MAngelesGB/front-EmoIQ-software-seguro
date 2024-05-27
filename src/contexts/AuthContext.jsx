@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
           const token = await currentUser.getIdToken();
           const { role } = idTokenResult.claims;
           console.log('Custom claim - role:', role);
-          setCookie('user', { token, role }, { path: '/' });
+          setCookie('user', { token, role, uid: idTokenResult.claims.user_id }, { path: '/' });
         } catch (error) {
           console.error('Error fetching custom claims:', error);
         }

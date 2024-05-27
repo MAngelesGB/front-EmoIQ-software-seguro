@@ -186,8 +186,7 @@ export default function AdminPanel() {
                   />
                 </div>
                 {
-                  // currentUser.role === 'superadmin' &&
-                  true &&
+                  currentUser.role === 'superadmin' &&
                   <div className="form-group">
                     <label htmlFor="role">Rol</label>
                     <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>

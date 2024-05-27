@@ -241,6 +241,10 @@
   width:75%
 }
 
+.ruta-aprendizaje .tema.selected {
+  background-color: #CAE6E8;
+}
+
 .ruta-aprendizaje img{
   width:65px;
   height:60px;

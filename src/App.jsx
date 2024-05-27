@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import ContentManagementEdit from "./components/contentManager/edit/ContentManagementEdit";
+import ContentManagementSuggest from './components/contentManager/suggest/ContentManagementSuggest';
 import ContentManagement from "./components/contentManager/manager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -45,7 +46,8 @@ function App() {
           <Route index element={<Navigate to="/manager/content" />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="content" element={<ContentManagement />} />
-          <Route path="content/edit/:id" element={<ContentManagementEdit />} />
+          <Route path="content/suggestion" element={<ContentManagementSuggest />} />
+          <Route path="content/:categoryId/:lectureId" element={<ContentManagementEdit />} />
         </Route>
         <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>

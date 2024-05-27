@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, getIdTokenResult } from 'firebase/auth';
 import { getFunctions, httpsCallable } from 'firebase/functions';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -14,7 +15,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app, 'emoiq-db');
 const functions = getFunctions(app);
 
-export { auth, httpsCallable, functions, getIdTokenResult };
+export { auth, db, httpsCallable, functions, getIdTokenResult };
 export default app;

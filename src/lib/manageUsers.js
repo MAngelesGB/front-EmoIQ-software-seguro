@@ -35,3 +35,8 @@ export async function deleteUser(data) {
   const result = await callFunction(data, 'deleteUser');
   return result;
 }
+
+export async function getUsernamesFromIds(data) {
+  const result = await callFunction(data, 'getNamesByUIDs');
+  return result;
+}
