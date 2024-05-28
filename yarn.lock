@@ -2721,6 +2721,7 @@ __metadata:
     firebase: "npm:^10.12.0"
     html-react-parser: "npm:^5.1.10"
     immutable: "npm:^4.3.6"
+    prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-modal: "npm:^3.16.1"
