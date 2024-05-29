@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import "./AdminPanel.css";
-import Modal from "react-modal";
 import { changeUserStatus, createUser, deleteUser, listUsers, updateUser } from '../../lib/manageUsers';
 import { formatDate } from '../../lib/formatDate';
 import { useAuth } from '../../contexts/AuthContext';
 
-Modal.setAppElement("#root");
-
-export default function AdminPanel() {
+export default function AdminPanel({ openModal }) {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,9 +12,7 @@ export default function AdminPanel() {
   const [role, setRole] = useState("manager");
   const [isVisible, setIsVisible] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
-  
+
   const { user: currentUser } = useAuth();
 
   const toggleVisibility = () => {
@@ -43,14 +38,12 @@ export default function AdminPanel() {
     e.preventDefault();
     // Validar datos
     if (fullname === "" || email === "" || (password === "" && editIndex === null)) {
-      setModalMessage("Por favor, complete todos los campos.");
-      setModalIsOpen(true);
+      openModal("Por favor, complete todos los campos.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setModalMessage("Las contraseñas no coinciden.");
-      setModalIsOpen(true);
+      openModal("Las contraseñas no coinciden.");
       return;
     }
 
@@ -314,21 +307,6 @@ export default function AdminPanel() {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        className="modal"
-        contentLabel="Error Message"
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
-          },
-        }}
-      >
-        <h2>Error</h2>
-        <p>{modalMessage}</p>
-        <button onClick={() => setModalIsOpen(false)}>Cerrar</button>
-      </Modal>
     </div>
   );
 }

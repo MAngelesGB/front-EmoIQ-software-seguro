@@ -70,11 +70,10 @@ export default function ContentManagement() {
           <button type="submit">BUSCAR</button>
         </form>
 
-        <div className="items">
           {
             filteredLectures.length === 0 ? <h3 style={{textAlign: 'center'}}>No hay lecturas disponibles</h3> :
             filteredLectures.map(lecture => (
-              <Fragment key={lecture.id}>
+              <div className="items" key={lecture.id}>
                 <div className="item-contenido">
                   <h3>Título</h3>
                   <p>{lecture.title}</p>
@@ -101,10 +100,9 @@ export default function ContentManagement() {
                     <span>Editar</span>
                   </button>
                 </div>
-              </Fragment>
+              </div>
             ))
           }
-        </div>
       </div>
       <div className="ruta-aprendizaje">
         <div className="competencias">
@@ -157,7 +155,7 @@ export default function ContentManagement() {
             <img src="/images/competencia-vida.png"/>
         </div>
         <div className="agregar-contenido" style={{ marginTop: '0.5rem' }}>
-          <button onClick={() => navigate('/manager/content/suggestion')}>
+          <button onClick={() => navigate(`/manager/content/${emotionalSkill}/suggestion`)}>
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 10.5C19 5.80729 15.1927 2 10.5 2C5.80729 2 2 5.80729 2 10.5C2 15.1927 5.80729 19 10.5 19C15.1927 19 19 15.1927 19 10.5Z" stroke="#F2F2F2" strokeMiterlimit="10"/>
               <path d="M10.5 6.9585V14.0418" stroke="#F2F2F2" strokeLinecap="round" strokeLinejoin="round"/>

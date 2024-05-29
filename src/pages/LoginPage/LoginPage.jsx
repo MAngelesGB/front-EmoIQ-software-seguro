@@ -10,9 +10,6 @@ function LoginPage() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6LchlOYpAAAAAJmtO7SMZDUOMkEkfgR8_oxt1Lhv', {action: 'LOGIN'});
-    });
 
     try {
       const userCredentials = await login(email, password);
@@ -50,9 +47,6 @@ function LoginPage() {
             />
             <button type="submit">INICIAR SESIÓN</button>
           </form>
-          <div className="recaptcha">
-            <div className="g-recaptcha" data-sitekey="your-site-key"></div>
-          </div>
         </div>
       </div>
     </div>

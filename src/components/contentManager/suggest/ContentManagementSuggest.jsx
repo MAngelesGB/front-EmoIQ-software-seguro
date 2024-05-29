@@ -1,8 +1,8 @@
 import TextEditor from '../../partials/TextEditor';
 
-function ContentManagementSuggest() {
+function ContentManagementSuggest({openModal}) {
   return (
-    <TextEditor />
+    <TextEditor openModal={openModal} />
   )
 }
 

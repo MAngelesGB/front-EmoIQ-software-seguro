@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, getIdTokenResult } from 'firebase/auth';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { getFirestore } from 'firebase/firestore';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -14,8 +15,14 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6LeZIOspAAAAAEtd8Yj73WesQqd2fEaYo9Hu7x6b'),
+  isTokenAutoRefreshEnabled: true
+});
+
 const auth = getAuth(app);
-const db = getFirestore(app, 'emoiq-db');
+const db = getFirestore(app);
 const functions = getFunctions(app);
 
 export { auth, db, httpsCallable, functions, getIdTokenResult };

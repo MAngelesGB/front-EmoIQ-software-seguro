@@ -1,4 +1,5 @@
 :root{
+  --ck-border-radius: 5px; 
   --azul-oscuro: #033859;
   --azul: #13DCF2;
   --verde-aqua: #11D9A0;
@@ -49,8 +50,9 @@
 }
 
 .options{
+  width: 100%;
   display: flex;
-  justify-content:flex-end; 
+  align-self:flex-start; 
   margin-right: 30px;
   margin-top: 10px;
   
@@ -91,7 +93,7 @@ form .items{
   display: flex;
   direction: row;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin: 20px;
 }
 
 form .items label{
@@ -170,7 +172,6 @@ form .items-form .lbl-area{
 .contenido{
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .contenido label{
@@ -200,4 +201,22 @@ form .items-form .lbl-area{
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.reach-text{
+  border-radius: 10px;
+}
+.ck-rounded-corners .ck.ck-toolbar, .ck.ck-toolbar.ck-rounded-corners {
+  border-radius:var(--ck-border-radius);
+}
+
+.ck-editor__editable_inline {
+  background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
+  height: 263px;
+  border-bottom: none !important;
+  color: var(--azul-oscuro) !important; /* Cambia el color del texto según sea necesario */
+}
+
+.ck-toolbar {
+  background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
 }

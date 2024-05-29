@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Timestamp } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RichText from "./RichText";
 import './TextEditor.css';
 import { addLecture, addSuggestion } from '../../lib/manageLectures';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function TextEditor({ lecture }) {
+export default function TextEditor({ lecture, openModal }) {
   const [title, setTitle] = useState(lecture?.title || '');
   const [body, setBody] = useState(lecture?.body || '');
   const [comments, setComments] = useState('');
   const [exercise, setExercise] = useState(lecture?.exercise || '');
   const navigate = useNavigate();
+  const { categoryId } = useParams();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -26,7 +27,18 @@ export default function TextEditor({ lecture }) {
       title, body, comments, exercise, uid: user.uid
     };
 
+    if (title.trim() === "" || exercise.trim() === "" || body.trim() === "") {
+      openModal("Los campos de título, ejercicio y contenido son obligatorios");
+      return;
+    }
+
     await addSuggestion(data);
+    setTitle('');
+    setBody('');
+    setExercise('');
+    setComments('');
+
+    openModal('La sugerencia fue añadida correctamente', 'Éxito');
   };
 
   const handleSave = async () => {
@@ -34,7 +46,13 @@ export default function TextEditor({ lecture }) {
       title, body, exercise, modifiedBy: user.uid, lastModified: Timestamp.now(),
     };
 
-    await addLecture('regulacion-emocional', data);
+    if (title.trim() === "" || exercise.trim() === "" || body.trim() === "") {
+      openModal("Los campos de título, ejercicio y contenido son obligatorios");
+      return;
+    }
+
+    await addLecture(categoryId, data);
+    navigate('/manager/content/');
   };
 
   return (
@@ -91,7 +109,7 @@ export default function TextEditor({ lecture }) {
                   </div>
                   
                 </div>
-                <div className="items-form-vertical">
+                { false && <div className="items-form-vertical">
                   <label className="ejercicio-vinculado" id="etiquetaEjericicioVinculado">
                     Mindful Observación del Entorno
                     <button>
@@ -100,7 +118,7 @@ export default function TextEditor({ lecture }) {
                       </svg>
                     </button>
                   </label>
-                </div>
+                </div>}
               </div>
             </div>
             <div className="contenido">

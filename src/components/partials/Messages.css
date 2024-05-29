@@ -1,0 +1,41 @@
+.modalEdit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--blanco-hueso);
+  border-radius: 4px;
+  padding: 15px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.modalEdit-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modalEdit h2 {
+  font-family: "gg-sans-bold", monospace;
+  color: var(--azul-oscuro);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modalEdit p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-family: "gg-sans-regular", monospace;
+  color: var(--azul-oscuro);
+}
+
+.modalEdit button {
+  font-family: "gg-sans-regular", monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--verde-aqua);
+  border: none;
+  border-radius: 20px;
+  width: 130px;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
