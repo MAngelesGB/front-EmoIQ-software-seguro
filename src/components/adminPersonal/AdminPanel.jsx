@@ -12,7 +12,7 @@ function isValidEmail(email) {
 // Password validation function
 function isValidPassword(password) {
   // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
   return passwordRegex.test(password);
 }
 
@@ -171,6 +171,7 @@ export default function AdminPanel({ openModal }) {
     const user = users[index];
     setFullname(user.displayName);
     setEmail(user.email);
+    setRole(user.role);
     // No puedes obtener la contraseña del usuario porque está encriptada
     setIsVisible(true);
     setEditIndex(index);
@@ -270,6 +271,9 @@ export default function AdminPanel({ openModal }) {
               <thead>
                 <tr>
                   <th>Nombre</th>
+                  {
+                    currentUser.role === 'superadmin' && <th>Rol</th>
+                  }
                   <th>Correo</th>
                   <th>Fecha de creación</th>
                   <th>Estado de la cuenta</th>
@@ -280,6 +284,10 @@ export default function AdminPanel({ openModal }) {
                 {users.map((user, index) => (
                   <tr key={index}>
                     <td>{user.displayName}</td>
+                    {
+                      currentUser.role === 'superadmin' &&
+                      <td>{user.role === 'admin' ? 'Admin' : 'Gestor'}</td>
+                    }
                     <td>{user.email}</td>
                     <td>{formatDate(user.creationTime)}</td>
                     <td>

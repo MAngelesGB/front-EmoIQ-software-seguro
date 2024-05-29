@@ -5,7 +5,7 @@ import ContentManagementEdit from "./components/contentManager/edit/ContentManag
 import ContentManagementSuggest from './components/contentManager/suggest/ContentManagementSuggest';
 import ContentManagement from "./components/contentManager/manager/ContentManagement";
 import AdminPanel from "./components/adminPersonal/AdminPanel";
-import LoginPage from './pages/LoginPage/LoginPage';
+import Login from './components/Login/Login';
 import Layout from './components/partials/Layout';
 import Messages from "./components/partials/Messages"; //
 import Modal from "react-modal";
@@ -13,6 +13,7 @@ import Modal from "react-modal";
 import { useAuth } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Feedback from './components/contentManager/Feedback';
+import ContentManagementPreview from './components/contentManager/preview/ContentManagementPreview';
 
 Modal.setAppElement("#root");
 
@@ -49,7 +50,7 @@ function App() {
           path="/login"
           element={
             <ProtectedRoute isAllowed={!user} redirectTo={`/${role}`}>
-              <LoginPage openModal={openModal} />
+              <Login openModal={openModal} />
             </ProtectedRoute>
           }
         />
@@ -65,7 +66,8 @@ function App() {
           <Route path="feedback" element={<Feedback />} />
           <Route path="content" element={<ContentManagement />} />
           <Route path="content/:categoryId/suggestion" element={<ContentManagementSuggest openModal={openModal} />} />
-          <Route path="content/:categoryId/:lectureId" element={<ContentManagementEdit openModal={openModal} />} />
+          <Route path="content/:categoryId/:lectureId" element={<ContentManagementPreview />} />
+          <Route path="content/:categoryId/:lectureId/edit" element={<ContentManagementEdit openModal={openModal} />} />
         </Route>
         <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>

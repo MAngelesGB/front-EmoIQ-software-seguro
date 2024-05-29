@@ -2,3 +2,21 @@
   --blanco-hueso: #F2F2F2;
   --azul-oscuro: #033859;
 }
+
+.rich-text{
+  border-radius: 10px;
+}
+.ck-rounded-corners .ck.ck-toolbar, .ck.ck-toolbar.ck-rounded-corners {
+  border-radius:var(--ck-border-radius);
+}
+
+.ck-editor__editable_inline {
+  background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
+  height: 265px;
+  border-bottom: none !important;
+  color: var(--azul-oscuro) !important; /* Cambia el color del texto según sea necesario */
+}
+
+.ck-toolbar {
+  background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
+}

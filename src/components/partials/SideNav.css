@@ -6,6 +6,10 @@
   align-items: start;
 }
 
+.sideNav nav {
+  width: 100%;
+}
+
 .sideNav-list {
   list-style: none;
   padding: 0;

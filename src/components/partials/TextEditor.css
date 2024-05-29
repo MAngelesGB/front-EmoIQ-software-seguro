@@ -52,7 +52,8 @@
 .options{
   width: 100%;
   display: flex;
-  align-self:flex-start; 
+  align-self:flex-start;
+  justify-content: flex-end;
   margin-right: 30px;
   margin-top: 10px;
   
@@ -119,11 +120,9 @@ form .items-form-vertical{
 form .items-form-vertical input{
   all: unset;
   width: 300px;
-  height: 30px;
+  height: 100%;
   padding: 5px;
   margin: 5px;
-  
-
 }
 
 form .items-form-vertical .buscar{
@@ -170,6 +169,7 @@ form .items-form .lbl-area{
 }
 
 .contenido{
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -192,6 +192,11 @@ form .items-form .lbl-area{
   margin: 5px;
   background-color: var(--blanco-hueso);
   padding: 2px;
+}
+
+form .items-form-vertical input:is(:focus, :hover) {
+  border: none;
+  outline: none;
 }
 
 .ejercicio-vinculado button{
@@ -219,4 +224,8 @@ form .items-form .lbl-area{
 
 .ck-toolbar {
   background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
+}
+
+#mensajeAdministrador {
+  resize: none;
 }

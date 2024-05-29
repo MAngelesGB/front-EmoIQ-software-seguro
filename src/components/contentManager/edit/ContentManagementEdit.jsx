@@ -8,17 +8,13 @@ function ContentManagementEdit({openModal}) {
   const { categoryId, lectureId } = useParams();
   const navigate = useNavigate();
 
-  const validCategories = [
-    'conciencia-emocional',
-    'regulacion-emocional',
-    'autonomia-emocional',
-    'competencia-social',
-    'competencia-bienestar'
-  ];
-
-  if (!validCategories.includes(categoryId)) {
-    return <Navigate to="/404" />
-  }
+  const validCategories = {
+    'conciencia-emocional': 'Conciencia emocional',
+    'regulacion-emocional': 'Regulación emocional',
+    'autonomia-emocional': 'Autonomía emocional',
+    'competencia-social': 'Competencia social',
+    'competencia-bienestar': 'Competencia para la vida y el bienestar'
+  };
 
   useEffect(() => {
     const getLecture = async () => {
@@ -38,8 +34,12 @@ function ContentManagementEdit({openModal}) {
     }
   }, []);
 
+  if (!validCategories[categoryId]) {
+    return <Navigate to="/404" />
+  }
+
   return (
-    <TextEditor lecture={lecture} openModal={openModal}/>
+    <TextEditor lecture={lecture} openModal={openModal} emotionalSkill={validCategories[categoryId]}/>
   )
 }
 

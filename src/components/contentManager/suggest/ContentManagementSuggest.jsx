@@ -3,20 +3,20 @@ import TextEditor from '../../partials/TextEditor';
 
 function ContentManagementSuggest({openModal}) {
   const { categoryId } = useParams();
-  const validCategories = [
-    'conciencia-emocional',
-    'regulacion-emocional',
-    'autonomia-emocional',
-    'competencia-social',
-    'competencia-bienestar'
-  ];
+  const validCategories = {
+    'conciencia-emocional': 'Conciencia emocional',
+    'regulacion-emocional': 'Regulación emocional',
+    'autonomia-emocional': 'Autonomía emocional',
+    'competencia-social': 'Competencia social',
+    'competencia-bienestar': 'Competencia para la vida y el bienestar'
+  };
 
-  if (!validCategories.includes(categoryId)) {
+  if (!validCategories[categoryId]) {
     return <Navigate to="/404" />
   }
 
   return (
-    <TextEditor openModal={openModal} />
+    <TextEditor openModal={openModal} emotionalSkill={validCategories[categoryId]} />
   )
 }
 

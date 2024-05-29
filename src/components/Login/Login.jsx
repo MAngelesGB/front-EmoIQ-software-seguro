@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import backgroundImg from '../../assets/background.png';
 import { useAuth } from '../../contexts/AuthContext';
-import './LoginPage.css';
+import './Login.css';
 
-function LoginPage({ openModal }) {
+function Login({ openModal }) {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -67,4 +67,4 @@ function LoginPage({ openModal }) {
   );
 }
 
-export default LoginPage;
+export default Login;

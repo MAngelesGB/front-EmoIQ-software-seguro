@@ -40,7 +40,20 @@ const findLecture = async (collectionName, lectureId) => {
   const docRef = doc(db, collectionName, lectureId);
   const docSnapshot = await getDoc(docRef);
   if (docSnapshot.exists()) {
-    return { id: docSnapshot.id, ...docSnapshot.data() };
+    console.log(docSnapshot.data())
+    let date;
+    const doc = docSnapshot.data();
+    if (doc.lastModified instanceof Timestamp) {
+      date = doc.lastModified.toDate();
+    } else if (doc.lastModified instanceof Date) {
+      date = doc.lastModified;
+    }
+
+    if (date) {
+      const dateString = formatDate(date);
+      doc.lastModified = dateString;
+    }
+    return { id: docSnapshot.id, ...doc };
   } else {
     return null;
   }
