@@ -16,8 +16,6 @@ export const AuthProvider = ({ children }) => {
           const idTokenResult = await getIdTokenResult(currentUser);
           const token = await currentUser.getIdToken();
           const { role } = idTokenResult.claims;
-          console.log(currentUser)
-          console.log('Custom claim - role:', role);
           setCookie('user', { token, role, uid: idTokenResult.claims.user_id }, { path: '/' });
         } catch (error) {
           console.error('Error fetching custom claims:', error);
@@ -52,18 +50,6 @@ export const AuthProvider = ({ children }) => {
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-
-  // call this function when you want to authenticate the user
-  // const login = async (data) => {
-  //   setCookie('user', data, { path: '/' });
-  //   navigate(`/${data.role}`);
-  // };
-
-  // // call this function to sign out logged in user
-  // const logout = () => {
-  //   setCookie('user', null, { path: '/' });
-  //   navigate('/login', { replace: true });
-  // };
 };
 
 export const useAuth = () => {

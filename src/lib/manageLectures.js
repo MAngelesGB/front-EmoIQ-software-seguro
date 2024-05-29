@@ -3,22 +3,14 @@ import { db } from '../config/firebase';
 import { formatDate } from './formatDate';
 
 const addDocument = async (collectionName, data) => {
-  try {
-    const docRef = await addDoc(collection(db, collectionName), data);
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
+  const docRef = await addDoc(collection(db, collectionName), data);
+  console.log("Document written with ID: ", docRef.id);
 };
 
 const getDocuments = async (collectionName) => {
-  try {
-    const querySnapshot = await getDocs(collection(db, collectionName));
-    const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return documents;
-  } catch (err) {
-    console.error(err);
-  }
+  const querySnapshot = await getDocs(collection(db, collectionName));
+  const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return documents;
 };
 
 const addLecture = async (collectionName, data) => {
@@ -45,17 +37,12 @@ const getLectures = async (emotionalSkill) => {
 };
 
 const findLecture = async (collectionName, lectureId) => {
-  try {
-    const docRef = doc(db, collectionName, lectureId);
-    const docSnapshot = await getDoc(docRef);
-    if (docSnapshot.exists()) {
-      return { id: docSnapshot.id, ...docSnapshot.data() };
-    } else {
-      console.log('No such document!');
-      return null;
-    }
-  } catch (err) {
-    console.error('Error finding lecture:', err);
+  const docRef = doc(db, collectionName, lectureId);
+  const docSnapshot = await getDoc(docRef);
+  if (docSnapshot.exists()) {
+    return { id: docSnapshot.id, ...docSnapshot.data() };
+  } else {
+    return null;
   }
 }
 

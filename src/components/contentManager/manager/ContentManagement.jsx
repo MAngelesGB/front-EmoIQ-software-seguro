@@ -13,14 +13,13 @@ export default function ContentManagement() {
   const [emotionalSkill, setEmotionalSkill] = useState('regulacion-emocional');
 
   useEffect(() => {
-    console.log('effect!!');
     const fetchLectures = async () => {
       const result = await getLectures(emotionalSkill);
       const uids = result.filter(lecture => lecture.modifiedBy).map(lecture => lecture.modifiedBy);
 
       if (uids.length > 0) {
         const { names } = await getUsernamesFromIds({ uids });
-        result.forEach((lecture, index) => lecture.modifiedBy = names[index]);
+        result.filter(lecture => lecture.modifiedBy).forEach((lecture, index) => lecture.modifiedBy = names[index]);
       }
 
       setLectures(result);
@@ -84,7 +83,7 @@ export default function ContentManagement() {
                 </div>
                 <div className="item-contenido-fecha">
                   <h3>Última modificación</h3>
-                  <p>{String(lecture.lastModified)} hecha por {lecture.modifiedBy}</p>
+                  <p>{String(lecture.lastModified)} { lecture.modifiedBy && 'hecha por ' + lecture.modifiedBy}</p>
                 </div>
                 <div className="btn-options">
                   <button className="btn-detalles">

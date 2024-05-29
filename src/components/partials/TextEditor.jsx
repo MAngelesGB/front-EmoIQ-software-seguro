@@ -6,6 +6,24 @@ import './TextEditor.css';
 import { addLecture, addSuggestion } from '../../lib/manageLectures';
 import { useAuth } from '../../contexts/AuthContext';
 
+function validarDatos(data) {
+  const errores = [];
+
+  if (data.title.length >= 50) {
+    errores.push("El título no debe tener más de 50 caracteres.");
+  }
+
+  if (data.body.length <= 100 || data.body.length >= 5000) {
+    errores.push("El contenido debe tener entre 100 y 5000 caracteres.");
+  }
+
+  if (data.exercise.length >= 50) {
+    errores.push("El nombre del ejercicio no debe tener más de 50 caracteres.");
+  }
+
+  return errores;
+}
+
 export default function TextEditor({ lecture, openModal }) {
   const [title, setTitle] = useState(lecture?.title || '');
   const [body, setBody] = useState(lecture?.body || '');
@@ -21,38 +39,58 @@ export default function TextEditor({ lecture, openModal }) {
     setExercise(lecture?.exercise || '');
   }, [lecture]);
 
-
-  const handleSuggest = async () => {
+  const inputValidation = () => {
     const data = {
-      title, body, comments, exercise, uid: user.uid
+      title: title.trim(),
+      body: body.trim(),
+      comments: comments.trim(),
+      exercise: exercise.trim(),
+      modifiedBy: user.uid,
+      lastModified: Timestamp.now()
     };
 
     if (title.trim() === "" || exercise.trim() === "" || body.trim() === "") {
       openModal("Los campos de título, ejercicio y contenido son obligatorios");
-      return;
+      return null;
     }
 
-    await addSuggestion(data);
-    setTitle('');
-    setBody('');
-    setExercise('');
-    setComments('');
+    const errors = validarDatos(data);
 
-    openModal('La sugerencia fue añadida correctamente', 'Éxito');
+    if (errors.length > 0) {
+      openModal(errors.join('\n'));
+      return null;
+    }
+
+    return data;
+  }
+
+  const handleSuggest = async () => {
+    const data = inputValidation();
+    if (!data) return;
+
+    try {
+      await addSuggestion(data);
+      setTitle('');
+      setBody('');
+      setExercise('');
+      setComments('');
+
+      openModal('La sugerencia fue añadida correctamente', 'Éxito');
+    } catch (err) {
+      openModal(err.message);
+    }
   };
 
   const handleSave = async () => {
-    const data = {
-      title, body, exercise, modifiedBy: user.uid, lastModified: Timestamp.now(),
-    };
+    const data = inputValidation();
+    if (!data) return;
 
-    if (title.trim() === "" || exercise.trim() === "" || body.trim() === "") {
-      openModal("Los campos de título, ejercicio y contenido son obligatorios");
-      return;
+    try {
+      await addLecture(categoryId, data);
+      navigate('/manager/content/');
+    } catch (err) {
+      openModal(err.message);
     }
-
-    await addLecture(categoryId, data);
-    navigate('/manager/content/');
   };
 
   return (

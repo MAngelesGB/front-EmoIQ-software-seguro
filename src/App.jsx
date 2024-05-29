@@ -49,7 +49,7 @@ function App() {
           path="/login"
           element={
             <ProtectedRoute isAllowed={!user} redirectTo={`/${role}`}>
-              <LoginPage />
+              <LoginPage openModal={openModal} />
             </ProtectedRoute>
           }
         />

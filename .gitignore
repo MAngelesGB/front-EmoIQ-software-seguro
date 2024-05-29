@@ -25,3 +25,7 @@ dist-ssr
 
 .env
 .yarn
+
+.firebaserc
+firebase.json
+.firebase

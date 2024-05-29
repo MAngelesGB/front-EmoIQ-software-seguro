@@ -3,7 +3,7 @@ import backgroundImg from '../../assets/background.png';
 import { useAuth } from '../../contexts/AuthContext';
 import './LoginPage.css';
 
-function LoginPage() {
+function LoginPage({ openModal }) {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,10 +12,24 @@ function LoginPage() {
     evt.preventDefault();
 
     try {
-      const userCredentials = await login(email, password);
-      console.log(userCredentials);
+      await login(email, password);
     } catch (err) {
-      console.error(err.message)
+      switch (err.code) {
+        case 'auth/missing-password':
+          openModal('El campo de contraseña es requerido');
+          break;
+        case 'auth/invalid-credential':
+          openModal('Datos de acceso incorrectos. Verifica el email y contraseña');
+          break;
+        case 'auth/invalid-email':
+          openModal('El correo es inválido');
+          break;
+        case 'auth/user-disabled':
+          openModal('Esta cuenta ha sido desactivada.');
+          break;
+        default:
+          openModal('Sucedió un error. Intenta nuevamente');
+      }
     }
   };
 

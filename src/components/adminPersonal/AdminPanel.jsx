@@ -4,6 +4,46 @@ import { changeUserStatus, createUser, deleteUser, listUsers, updateUser } from 
 import { formatDate } from '../../lib/formatDate';
 import { useAuth } from '../../contexts/AuthContext';
 
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Password validation function
+function isValidPassword(password) {
+  // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordRegex.test(password);
+}
+
+// Display name validation function
+function isValidDisplayName(displayName) {
+  // Display name must be between 3 and 50 characters long
+  return typeof displayName === 'string' && displayName.trim().length >= 3 && displayName.trim().length <= 50;
+}
+
+function isValidRole(role) {
+  return role === 'admin' || role === 'manager';
+}
+
+function validarDatos(data) {
+  const errores = [];
+
+  if (!isValidDisplayName(data.displayName)) {
+    errores.push("El nombre debe tener entre 3 y 50 caracteres.");
+  }
+
+  if (!isValidEmail(data.email)) {
+    errores.push("El email es inválido.");
+  }
+
+  if (!isValidRole(data.role)) {
+    errores.push("El email es inválido.");
+  }
+
+  return errores;
+}
+
 export default function AdminPanel({ openModal }) {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -48,8 +88,8 @@ export default function AdminPanel({ openModal }) {
     }
 
     const newUser = {
-      displayName: fullname,
-      email: email,
+      displayName: fullname.trim(),
+      email: email.trim(),
       role: role
     };
 
@@ -57,19 +97,41 @@ export default function AdminPanel({ openModal }) {
       if (editIndex === null) {
         // Crear un nuevo usuario
         newUser.password = password;
+
+        const errors = validarDatos(newUser);
+        if (errors.length > 0) {
+          openModal(errors.join(' '));
+          return;
+        }
+
         const result = await createUser(newUser);
         setUsers([...users, result]);
+
+        openModal('Usuario creado correctamente', 'Éxito');
       } else {
         // Actualizar el usuario existente
         if (password) newUser.password = password;
+
+        const errors = validarDatos(newUser);
+        if (!isValidPassword(password)) {
+          errors.push('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un dígito.')
+        }
+
+        if (errors.length > 0) {
+          openModal(errors.join(' '));
+          return;
+        }
+
         const result = await updateUser({ previousEmail: users[editIndex].email, ...newUser });
         const newUsers = [...users];
         newUsers[editIndex] = result;
         setUsers(newUsers);
         setEditIndex(null);
+
+        openModal('Usuario editado correctamente', 'Éxito');
       }
     } catch (err) {
-      console.error(err);
+      openModal(err.message);
     }
 
     // Limpiar campos
@@ -77,15 +139,6 @@ export default function AdminPanel({ openModal }) {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
-
-    // Mostrar mensaje de éxito
-
-    console.log("Usuario creado:", {
-      fullname,
-      email,
-      password,
-      confirmPassword,
-    });
   };
 
   const handleDeleteUser = async (index) => {
@@ -95,7 +148,7 @@ export default function AdminPanel({ openModal }) {
       newUsers.splice(index, 1);
       setUsers(newUsers);
     } catch(err) {
-      console.error(err);
+      openModal('Error eliminando el usuario');
     }
   };
 
@@ -139,73 +192,79 @@ export default function AdminPanel({ openModal }) {
           </div>
           {isVisible && (
             <div className="form-container">
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">Nombre completo</label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
-                    placeholder="ej. Juanito Pérez"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Correo electrónico</label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="ej. kevin123@ejemplo.com"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password">Contraseña</label>
-                  <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  />
-                </div>
-                {
-                  currentUser.role === 'superadmin' &&
+              <form className="admin-panel-form" onSubmit={handleSubmit}>
+                <div>
                   <div className="form-group">
-                    <label htmlFor="role">Rol</label>
-                    <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
-                      <option value="admin">Administrador</option>
-                      <option value="manager">Gestor de contenidos</option>
-                    </select>
+                    <label htmlFor="name">Nombre completo</label>
+                    <input
+                      type="text"
+                      id="name"
+                      value={fullname}
+                      onChange={(e) => setFullname(e.target.value)}
+                      placeholder="ej. Juanito Pérez"
+                    />
                   </div>
-                }
-                <div className="form-group-button">
-                <button
-                  type="button"
-                  className="cancel-button"
-                  onClick={() => setIsVisible(false)}
-                >
-                  CANCELAR
-                </button>
-                <button type="submit" className="save-button">
-                  GUARDAR
-                </button>
+                  <div className="form-group">
+                    <label htmlFor="email">Correo electrónico</label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="ej. kevin123@ejemplo.com"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="form-group">
+                    <label htmlFor="password">Contraseña</label>
+                    <input
+                      type="password"
+                      id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  {
+                    currentUser.role === 'superadmin' &&
+                    <div className="form-group">
+                      <label htmlFor="role">Rol</label>
+                      <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
+                        <option value="admin">Administrador</option>
+                        <option value="manager">Gestor de contenidos</option>
+                      </select>
+                    </div>
+                  }
+                  <div className="form-group-button">
+                  <button
+                    type="button"
+                    className="cancel-button"
+                    onClick={() => setIsVisible(false)}
+                  >
+                    CANCELAR
+                  </button>
+                  <button type="submit" className="save-button">
+                    GUARDAR
+                  </button>
+                  </div>
                 </div>
               </form>
             </div>
           )}
         </div>
         <div className="registered-list">
-          <h2>Gestores registrados</h2>
+          <h2>{ currentUser.role === 'superadmin' ? 'Gestores y administradores registrados' : 'Gestores registrados' } </h2>
           <div className="table">
             <table>
               <thead>
