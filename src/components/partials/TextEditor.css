@@ -25,11 +25,13 @@
 .contentManagementEdit{
   display: flex;
   flex-direction: column;
-  margin-top:50px; 
+  margin-top: 50px;
   font-family: "gg-sans-regular", monospace;
   background-color: #F6F6F6;
   width: 75vw;
-  height: 83.5vh;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 83.5vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
@@ -88,11 +90,13 @@
 
 .items-form-material{
   margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 form .items{
   display: flex;
-  direction: row;
+  align-self: flex-start;
   justify-content: space-between;
   margin: 20px;
 }
@@ -100,7 +104,6 @@ form .items{
 form .items label{
   font-family: "gg-sans-semibold", monospace;
   color:#000000;
-  
 }
 
 form .items-form{
@@ -228,4 +231,15 @@ form .items-form-vertical input:is(:focus, :hover) {
 
 #mensajeAdministrador {
   resize: none;
+}
+
+form .items {
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1080px) {
+  form .items {
+    flex-direction: row;
+    align-self: unset;
+  }
 }

@@ -4,7 +4,7 @@ import { formatDate } from './formatDate';
 
 const addDocument = async (collectionName, data) => {
   const docRef = await addDoc(collection(db, collectionName), data);
-  console.log("Document written with ID: ", docRef.id);
+  return docRef;
 };
 
 const getDocuments = async (collectionName) => {
@@ -40,7 +40,6 @@ const findLecture = async (collectionName, lectureId) => {
   const docRef = doc(db, collectionName, lectureId);
   const docSnapshot = await getDoc(docRef);
   if (docSnapshot.exists()) {
-    console.log(docSnapshot.data())
     let date;
     const doc = docSnapshot.data();
     if (doc.lastModified instanceof Timestamp) {
@@ -58,30 +57,6 @@ const findLecture = async (collectionName, lectureId) => {
     return null;
   }
 }
-
-// const findLectureById = async (lectureId) => {
-//   try {
-//     const parentCollection = collection(db, 'lectures');
-//     const parentDocsSnapshot = await getDocs(parentCollection);
-
-//     for (const parentDoc of parentDocsSnapshot.docs) {
-//       const nestedCollection = collection(parentDoc.ref, 'docs');
-//       const nestedDocRef = doc(nestedCollection, lectureId);
-//       const docSnapshot = await getDoc(nestedDocRef);
-
-//       if (docSnapshot.exists) {
-//         console.log(`Found nested document in parent document ID: ${parentDoc.id}`);
-//         console.log(`Nested document data: `, docSnapshot.data());
-//         return docSnapshot.data();  // Or return nestedDoc if you need the whole document reference
-//       }
-//     }
-
-//     console.log('Nested document not found');
-//     return null;
-//   } catch (error) {
-//     console.error('Error searching document:', error);
-//   }
-// };
 
 const addSuggestion = async (data) => {
   const ref = await addDocument('suggestions', data);

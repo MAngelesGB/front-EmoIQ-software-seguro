@@ -69,13 +69,13 @@ function ContentManagementPreview() {
               <div className="items" style={{justifyContent: 'space-between', margin: '1rem 0', width: '100%', gap: '0.5rem' }}>
                 <div className="group-items" style={{flex: 1}}>
                   <div className="items-form" style={{flexDirection: 'column', textAlign: 'left', margin: 0, alignItems: 'flex-start'}}>
-                    <label>Titulo del material</label>
+                    <label style={{fontSize: '1.5rem'}}>Titulo del material</label>
                     {lecture.title}
                   </div>
                 </div>
                 <div className="group-items" style={{flex: 1}}>
                   <div  className="items-form-vertical" style={{margin: 0}}>
-                    <label className="lbl-buscar" style={{margin: 0}}>Ejercicio vinculado</label>
+                    <label className="lbl-buscar" style={{margin: 0, fontSize: '1.5rem'}}>Ejercicio vinculado</label>
                     {lecture.exercise || 'Ninguno'}
                   </div>
                   { false && <div className="items-form-vertical">
@@ -91,11 +91,11 @@ function ContentManagementPreview() {
                 </div>
               </div>
               <div style={{marginBottom: '1rem'}}>
-                <label style={{ fontFamily: 'gg-sans-semibold', display: 'block'}}>Última modificación</label>
+                <label style={{ fontSize: '1.5rem', fontFamily: 'gg-sans-semibold', display: 'block'}}>Última modificación</label>
                 {String(lecture.lastModified)} { lecture.modifiedBy && 'hecha por ' + lecture.modifiedBy}
               </div>
               <div className="contenido" style={{padding: 0}}>
-                <label>Contenido:</label>
+                <label style={{fontSize: '1.5rem'}}>Contenido:</label>
                 <p dangerouslySetInnerHTML={{ __html: sanitizeHtml(lecture.body) }}></p>
               </div>
             </form>
