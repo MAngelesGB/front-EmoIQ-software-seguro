@@ -15,14 +15,12 @@ function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-// Password validation function
 function isValidPassword(password) {
   // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
   return passwordRegex.test(password);
 }
 
-// Display name validation function
 function isValidDisplayName(displayName) {
   // Display name must be between 3 and 50 characters long
   return (
@@ -113,6 +111,12 @@ export default function AdminPanel({ openModal }) {
         newUser.password = password;
 
         const errors = validarDatos(newUser);
+        if (!isValidPassword(password)) {
+          errors.push(
+            'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un dígito.',
+          );
+        }
+
         if (errors.length > 0) {
           openModal(errors.join(' '));
           return;

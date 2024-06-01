@@ -170,6 +170,7 @@ form .items-form .lbl-area {
 }
 
 .contenido {
+  width: 100%;
   max-width: 100%;
   padding: 0 1rem;
   display: flex;

@@ -7,7 +7,7 @@ import ContentManagement from './components/contentManager/manager/ContentManage
 import AdminPanel from './components/adminPersonal/AdminPanel';
 import Login from './components/Login/Login';
 import Layout from './components/partials/Layout';
-import Messages from './components/partials/Messages'; //
+import Messages from './components/partials/Messages';
 import Modal from 'react-modal';
 
 import { useAuth } from './contexts/AuthContext';
