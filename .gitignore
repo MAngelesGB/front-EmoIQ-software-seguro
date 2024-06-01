@@ -7,10 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
-dist
-dist-ssr
 *.local
+
+# Built output
+build
+dist
+out
+dist-ssr
 
 # Editor directories and files
 .vscode/*
@@ -23,9 +28,17 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment variables
 .env
-.yarn
 
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Firebase files
 .firebaserc
 firebase.json
 .firebase

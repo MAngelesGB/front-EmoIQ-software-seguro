@@ -3,7 +3,7 @@ import TextEditor from '../../partials/TextEditor';
 import { useEffect, useState } from 'react';
 import { findLecture } from '../../../lib/manageLectures';
 
-function ContentManagementEdit({openModal}) {
+function ContentManagementEdit({ openModal }) {
   const [lecture, setLecture] = useState(null);
   const { categoryId, lectureId } = useParams();
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function ContentManagementEdit({openModal}) {
     'regulacion-emocional': 'Regulación emocional',
     'autonomia-emocional': 'Autonomía emocional',
     'competencia-social': 'Competencia social',
-    'competencia-bienestar': 'Competencia para la vida y el bienestar'
+    'competencia-bienestar': 'Competencia para la vida y el bienestar',
   };
 
   useEffect(() => {
@@ -21,13 +21,19 @@ function ContentManagementEdit({openModal}) {
       const result = await findLecture(categoryId, lectureId);
       if (!result) navigate('/404');
       setLecture(result);
-    }
+    };
 
     try {
       getLecture();
     } catch (err) {
       return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
           <h1>Error buscando la lectura</h1>
         </div>
       );
@@ -35,12 +41,16 @@ function ContentManagementEdit({openModal}) {
   }, []);
 
   if (!validCategories[categoryId]) {
-    return <Navigate to="/404" />
+    return <Navigate to="/404" />;
   }
 
   return (
-    <TextEditor lecture={lecture} openModal={openModal} emotionalSkill={validCategories[categoryId]}/>
-  )
+    <TextEditor
+      lecture={lecture}
+      openModal={openModal}
+      emotionalSkill={validCategories[categoryId]}
+    />
+  );
 }
 
 export default ContentManagementEdit;

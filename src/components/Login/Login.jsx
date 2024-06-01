@@ -8,7 +8,7 @@ function Login({ openModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (evt) => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
 
     try {
@@ -19,7 +19,9 @@ function Login({ openModal }) {
           openModal('El campo de contraseña es requerido');
           break;
         case 'auth/invalid-credential':
-          openModal('Datos de acceso incorrectos. Verifica el email y contraseña');
+          openModal(
+            'Datos de acceso incorrectos. Verifica el email y contraseña',
+          );
           break;
         case 'auth/invalid-email':
           openModal('El correo es inválido');
@@ -36,7 +38,11 @@ function Login({ openModal }) {
   return (
     <div className="login-container">
       <div className="image-side">
-        <img src={backgroundImg} alt="Water lilies" className="background-image" />
+        <img
+          src={backgroundImg}
+          alt="Water lilies"
+          className="background-image"
+        />
       </div>
       <div className="form-side">
         <div className="login-form">
@@ -49,7 +55,7 @@ function Login({ openModal }) {
               id="email"
               placeholder="ej. kevin123@ejemplo.com"
               value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
+              onChange={evt => setEmail(evt.target.value)}
             />
             <label htmlFor="password">Contraseña</label>
             <input
@@ -57,7 +63,7 @@ function Login({ openModal }) {
               id="password"
               placeholder="Contraseña"
               value={password}
-              onChange={(evt) => setPassword(evt.target.value)}
+              onChange={evt => setPassword(evt.target.value)}
             />
             <button type="submit">INICIAR SESIÓN</button>
           </form>

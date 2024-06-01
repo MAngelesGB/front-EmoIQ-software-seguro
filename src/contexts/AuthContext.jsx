@@ -1,5 +1,10 @@
 import { createContext, useContext, useMemo, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth';
 import { useCookies } from 'react-cookie';
 import { auth, getIdTokenResult } from '../config/firebase';
 
@@ -10,13 +15,17 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async currentUser => {
       if (currentUser) {
         try {
           const idTokenResult = await getIdTokenResult(currentUser);
           const token = await currentUser.getIdToken();
           const { role } = idTokenResult.claims;
-          setCookie('user', { token, role, uid: idTokenResult.claims.user_id }, { path: '/' });
+          setCookie(
+            'user',
+            { token, role, uid: idTokenResult.claims.user_id },
+            { path: '/' },
+          );
         } catch (error) {
           console.error('Error fetching custom claims:', error);
         }

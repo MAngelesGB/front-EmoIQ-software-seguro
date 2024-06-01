@@ -1,79 +1,78 @@
-:root{
-  --ck-border-radius: 5px; 
+:root {
+  --ck-border-radius: 5px;
   --azul-oscuro: #033859;
-  --azul: #13DCF2;
-  --verde-aqua: #11D9A0;
-  --amarillo: #F2C335;
-  --blanco-hueso: #F2F2F2;
-  --rojo: #DE3E0B;
+  --azul: #13dcf2;
+  --verde-aqua: #11d9a0;
+  --amarillo: #f2c335;
+  --blanco-hueso: #f2f2f2;
+  --rojo: #de3e0b;
 }
 
 @font-face {
-  font-family: "gg-sans-semibold";
-  src: url("../../assets/gg-sans/gg-sans-Semibold.ttf") format("truetype");
+  font-family: 'gg-sans-semibold';
+  src: url('../../assets/gg-sans/gg-sans-Semibold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "gg-sans-regular";
-  src: url("../../assets/gg-sans/gg-sans-Regular.ttf") format("truetype");
+  font-family: 'gg-sans-regular';
+  src: url('../../assets/gg-sans/gg-sans-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
-.contentManagementEdit{
+.contentManagementEdit {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  font-family: "gg-sans-regular", monospace;
-  background-color: #F6F6F6;
+  font-family: 'gg-sans-regular', monospace;
+  background-color: #f6f6f6;
   width: 75vw;
   margin-left: auto;
   margin-right: auto;
   min-height: 83.5vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
-.contentManagementEdit h1{
-  font-family: "gg-sans-semibold", monospace;
+.contentManagementEdit h1 {
+  font-family: 'gg-sans-semibold', monospace;
   text-align: center;
-  color:#000000;
+  color: #000000;
   font-size: 20px;
-  margin-top:20px; 
+  margin-top: 20px;
 }
 
-.items-form-material form{
+.items-form-material form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.options{
+.options {
   width: 100%;
   display: flex;
-  align-self:flex-start;
+  align-self: flex-start;
   justify-content: flex-end;
   margin-right: 30px;
   margin-top: 10px;
-  
 }
 
-.options .option-btn{
+.options .option-btn {
   background-color: var(--azul-oscuro);
-  color:#FFFFFF; 
+  color: #ffffff;
   cursor: pointer;
 }
 
-.options .option-guardar{
-  background-color: var(--azul); 
-  color:#FFFFFF;
+.options .option-guardar {
+  background-color: var(--azul);
+  color: #ffffff;
   cursor: pointer;
 }
 
-.options button{
+.options button {
   margin-left: 10px;
   width: 100px;
   padding: 3px;
@@ -84,43 +83,42 @@
   align-items: center;
 }
 
-.options button span{
+.options button span {
   margin-left: 5px;
 }
 
-.items-form-material{
+.items-form-material {
   margin: 0 auto;
   width: 100%;
   padding: 0 1rem;
 }
 
-form .items{
+form .items {
   display: flex;
   align-self: flex-start;
   justify-content: space-between;
   margin: 20px;
 }
 
-form .items label{
-  font-family: "gg-sans-semibold", monospace;
-  color:#000000;
+form .items label {
+  font-family: 'gg-sans-semibold', monospace;
+  color: #000000;
 }
 
-form .items-form{
+form .items-form {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 5px;
-  
 }
 
-form .items-form-vertical{
+form .items-form-vertical {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-form .items-form-vertical input{
+form .items-form-vertical input {
   all: unset;
   width: 300px;
   height: 100%;
@@ -128,70 +126,71 @@ form .items-form-vertical input{
   margin: 5px;
 }
 
-form .items-form-vertical .buscar{
+form .items-form-vertical .buscar {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   flex-direction: row;
   height: 30px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
   background-color: var(--blanco-hueso);
 }
 
-form .items-form-vertical .lbl-buscar{
+form .items-form-vertical .lbl-buscar {
   margin-left: 5px;
 }
 
-form .items-form input{
+form .items-form input {
   width: 300px;
   height: 30px;
   border-radius: 5px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   background-color: var(--blanco-hueso);
-  color:var(--azul-oscuro); 
+  color: var(--azul-oscuro);
   padding: 5px;
   margin: 20px;
 }
 
-form .items-form textarea{
+form .items-form textarea {
   width: 200px;
   height: 75px;
   border-radius: 5px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   background-color: var(--blanco-hueso);
-  color:var(--azul-oscuro); 
+  color: var(--azul-oscuro);
   padding: 5px;
   margin-left: 35px;
 }
 
-form .items-form .lbl-area{
+form .items-form .lbl-area {
   width: 118px;
 }
 
-.contenido{
+.contenido {
+  max-width: 100%;
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.contenido label{
-  font-family: "gg-sans-semibold", monospace;
-  color:#000000;
+.contenido label {
+  font-family: 'gg-sans-semibold', monospace;
+  color: #000000;
   margin-bottom: 10px;
 }
 
-.ejercicio-vinculado{
+.ejercicio-vinculado {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content:space-around;
-  text-align: center ;
+  justify-content: space-around;
+  text-align: center;
   border-radius: 20px;
   width: 280px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   margin: 5px;
   background-color: var(--blanco-hueso);
   padding: 2px;
@@ -202,7 +201,7 @@ form .items-form-vertical input:is(:focus, :hover) {
   outline: none;
 }
 
-.ejercicio-vinculado button{
+.ejercicio-vinculado button {
   border: none;
   display: flex;
   margin-top: 2px;
@@ -211,22 +210,29 @@ form .items-form-vertical input:is(:focus, :hover) {
   cursor: pointer;
 }
 
-.reach-text{
+.reach-text {
   border-radius: 10px;
 }
-.ck-rounded-corners .ck.ck-toolbar, .ck.ck-toolbar.ck-rounded-corners {
-  border-radius:var(--ck-border-radius);
+.ck-rounded-corners .ck.ck-toolbar,
+.ck.ck-toolbar.ck-rounded-corners {
+  border-radius: var(--ck-border-radius);
 }
 
 .ck-editor__editable_inline {
-  background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
+  background-color: var(
+    --blanco-hueso
+  ) !important; /* Cambia el color de fondo según sea necesario */
   height: 263px;
   border-bottom: none !important;
-  color: var(--azul-oscuro) !important; /* Cambia el color del texto según sea necesario */
+  color: var(
+    --azul-oscuro
+  ) !important; /* Cambia el color del texto según sea necesario */
 }
 
 .ck-toolbar {
-  background-color: var(--blanco-hueso) !important; /* Cambia el color de fondo según sea necesario */
+  background-color: var(
+    --blanco-hueso
+  ) !important; /* Cambia el color de fondo según sea necesario */
 }
 
 #mensajeAdministrador {

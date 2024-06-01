@@ -1,6 +1,12 @@
-import { useState, useEffect } from "react";
-import "./AdminPanel.css";
-import { changeUserStatus, createUser, deleteUser, listUsers, updateUser } from '../../lib/manageUsers';
+import { useState, useEffect } from 'react';
+import './AdminPanel.css';
+import {
+  changeUserStatus,
+  createUser,
+  deleteUser,
+  listUsers,
+  updateUser,
+} from '../../lib/manageUsers';
 import { formatDate } from '../../lib/formatDate';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -19,7 +25,11 @@ function isValidPassword(password) {
 // Display name validation function
 function isValidDisplayName(displayName) {
   // Display name must be between 3 and 50 characters long
-  return typeof displayName === 'string' && displayName.trim().length >= 3 && displayName.trim().length <= 50;
+  return (
+    typeof displayName === 'string' &&
+    displayName.trim().length >= 3 &&
+    displayName.trim().length <= 50
+  );
 }
 
 function isValidRole(role) {
@@ -30,26 +40,26 @@ function validarDatos(data) {
   const errores = [];
 
   if (!isValidDisplayName(data.displayName)) {
-    errores.push("El nombre debe tener entre 3 y 50 caracteres.");
+    errores.push('El nombre debe tener entre 3 y 50 caracteres.');
   }
 
   if (!isValidEmail(data.email)) {
-    errores.push("El email es inválido.");
+    errores.push('El email es inválido.');
   }
 
   if (!isValidRole(data.role)) {
-    errores.push("El email es inválido.");
+    errores.push('El email es inválido.');
   }
 
   return errores;
 }
 
 export default function AdminPanel({ openModal }) {
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("manager");
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('manager');
   const [isVisible, setIsVisible] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
@@ -69,28 +79,32 @@ export default function AdminPanel({ openModal }) {
       } catch (err) {
         console.error(err);
       }
-    }
+    };
 
     getUsers();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     // Validar datos
-    if (fullname === "" || email === "" || (password === "" && editIndex === null)) {
-      openModal("Por favor, complete todos los campos.");
+    if (
+      fullname === '' ||
+      email === '' ||
+      (password === '' && editIndex === null)
+    ) {
+      openModal('Por favor, complete todos los campos.');
       return;
     }
 
     if (password !== confirmPassword) {
-      openModal("Las contraseñas no coinciden.");
+      openModal('Las contraseñas no coinciden.');
       return;
     }
 
     const newUser = {
       displayName: fullname.trim(),
       email: email.trim(),
-      role: role
+      role: role,
     };
 
     try {
@@ -114,7 +128,9 @@ export default function AdminPanel({ openModal }) {
 
         const errors = validarDatos(newUser);
         if (!isValidPassword(password)) {
-          errors.push('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un dígito.')
+          errors.push(
+            'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un dígito.',
+          );
         }
 
         if (errors.length > 0) {
@@ -122,7 +138,10 @@ export default function AdminPanel({ openModal }) {
           return;
         }
 
-        const result = await updateUser({ previousEmail: users[editIndex].email, ...newUser });
+        const result = await updateUser({
+          previousEmail: users[editIndex].email,
+          ...newUser,
+        });
         const newUsers = [...users];
         newUsers[editIndex] = result;
         setUsers(newUsers);
@@ -135,39 +154,39 @@ export default function AdminPanel({ openModal }) {
     }
 
     // Limpiar campos
-    setFullname("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    setFullname('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
   };
 
-  const handleDeleteUser = async (index) => {
+  const handleDeleteUser = async index => {
     try {
       await deleteUser({ email: users[index].email });
       const newUsers = [...users];
       newUsers.splice(index, 1);
       setUsers(newUsers);
-    } catch(err) {
+    } catch (err) {
       openModal('Error eliminando el usuario');
     }
   };
 
-  const handleToggleActive = async (index) => {
+  const handleToggleActive = async index => {
     try {
       const data = {
         email: users[index].email,
-        disabled: !users[index].disabled
+        disabled: !users[index].disabled,
       };
       await changeUserStatus(data);
       const newUsers = [...users];
       newUsers[index].disabled = !newUsers[index].disabled;
       setUsers(newUsers);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   };
 
-  const handleEditUser = (index) => {
+  const handleEditUser = index => {
     const user = users[index];
     setFullname(user.displayName);
     setEmail(user.email);
@@ -186,7 +205,7 @@ export default function AdminPanel({ openModal }) {
             <div className="button-container">
               {!isVisible && (
                 <button className="add-button" onClick={toggleVisibility}>
-                  {isVisible ? "Ocultar formulario" : "AGREGAR"}
+                  {isVisible ? 'Ocultar formulario' : 'AGREGAR'}
                 </button>
               )}
             </div>
@@ -201,7 +220,7 @@ export default function AdminPanel({ openModal }) {
                       type="text"
                       id="name"
                       value={fullname}
-                      onChange={(e) => setFullname(e.target.value)}
+                      onChange={e => setFullname(e.target.value)}
                       placeholder="ej. Juanito Pérez"
                     />
                   </div>
@@ -211,7 +230,7 @@ export default function AdminPanel({ openModal }) {
                       type="email"
                       id="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       placeholder="ej. kevin123@ejemplo.com"
                     />
                   </div>
@@ -223,41 +242,47 @@ export default function AdminPanel({ openModal }) {
                       type="password"
                       id="password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={e => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                    <label htmlFor="confirmPassword">
+                      Confirmar contraseña
+                    </label>
                     <input
                       type="password"
                       id="confirmPassword"
                       value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      onChange={e => setConfirmPassword(e.target.value)}
                     />
                   </div>
                 </div>
                 <div>
-                  {
-                    currentUser.role === 'superadmin' &&
+                  {currentUser.role === 'superadmin' && (
                     <div className="form-group">
                       <label htmlFor="role">Rol</label>
-                      <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
+                      <select
+                        name="role"
+                        id="role"
+                        value={role}
+                        onChange={e => setRole(e.target.value)}
+                      >
                         <option value="admin">Administrador</option>
                         <option value="manager">Gestor de contenidos</option>
                       </select>
                     </div>
-                  }
+                  )}
                   <div className="form-group-button">
-                  <button
-                    type="button"
-                    className="cancel-button"
-                    onClick={() => setIsVisible(false)}
-                  >
-                    CANCELAR
-                  </button>
-                  <button type="submit" className="save-button">
-                    GUARDAR
-                  </button>
+                    <button
+                      type="button"
+                      className="cancel-button"
+                      onClick={() => setIsVisible(false)}
+                    >
+                      CANCELAR
+                    </button>
+                    <button type="submit" className="save-button">
+                      GUARDAR
+                    </button>
                   </div>
                 </div>
               </form>
@@ -265,15 +290,17 @@ export default function AdminPanel({ openModal }) {
           )}
         </div>
         <div className="registered-list">
-          <h2>{ currentUser.role === 'superadmin' ? 'Gestores y administradores registrados' : 'Gestores registrados' } </h2>
+          <h2>
+            {currentUser.role === 'superadmin'
+              ? 'Gestores y administradores registrados'
+              : 'Gestores registrados'}{' '}
+          </h2>
           <div className="table">
             <table>
               <thead>
                 <tr>
                   <th>Nombre</th>
-                  {
-                    currentUser.role === 'superadmin' && <th>Rol</th>
-                  }
+                  {currentUser.role === 'superadmin' && <th>Rol</th>}
                   <th>Correo</th>
                   <th>Fecha de creación</th>
                   <th>Estado de la cuenta</th>
@@ -284,10 +311,9 @@ export default function AdminPanel({ openModal }) {
                 {users.map((user, index) => (
                   <tr key={index}>
                     <td>{user.displayName}</td>
-                    {
-                      currentUser.role === 'superadmin' &&
+                    {currentUser.role === 'superadmin' && (
                       <td>{user.role === 'admin' ? 'Admin' : 'Gestor'}</td>
-                    }
+                    )}
                     <td>{user.email}</td>
                     <td>{formatDate(user.creationTime)}</td>
                     <td>
@@ -317,7 +343,7 @@ export default function AdminPanel({ openModal }) {
                       </button>
                       <button
                         className={`action-button-active ${
-                          user.disabled ? "yellow" : ""
+                          user.disabled ? 'yellow' : ''
                         }`}
                         onClick={() => handleToggleActive(index)}
                       >

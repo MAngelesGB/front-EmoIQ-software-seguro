@@ -1,7 +1,7 @@
-header{
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  color: #F2F2F2;
+  color: #f2f2f2;
 }

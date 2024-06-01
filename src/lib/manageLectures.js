@@ -1,4 +1,11 @@
-import { collection, addDoc, getDocs, getDoc, doc, Timestamp } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+  Timestamp,
+} from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { formatDate } from './formatDate';
 
@@ -7,9 +14,12 @@ const addDocument = async (collectionName, data) => {
   return docRef;
 };
 
-const getDocuments = async (collectionName) => {
+const getDocuments = async collectionName => {
   const querySnapshot = await getDocs(collection(db, collectionName));
-  const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const documents = querySnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
   return documents;
 };
 
@@ -18,7 +28,7 @@ const addLecture = async (collectionName, data) => {
   return ref;
 };
 
-const getLectures = async (emotionalSkill) => {
+const getLectures = async emotionalSkill => {
   const documents = await getDocuments(emotionalSkill);
   documents.forEach(doc => {
     let date;
@@ -56,9 +66,9 @@ const findLecture = async (collectionName, lectureId) => {
   } else {
     return null;
   }
-}
+};
 
-const addSuggestion = async (data) => {
+const addSuggestion = async data => {
   const ref = await addDocument('suggestions', data);
   return ref;
 };

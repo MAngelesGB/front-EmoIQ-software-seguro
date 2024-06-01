@@ -1,11 +1,16 @@
-import React from "react";
-import Modal from "react-modal";
-import PropTypes from "prop-types";
+import React from 'react';
+import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 import './Messages.css';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
-export default function Messages({ modalIsOpen, modalMessage, closeModal, modalTitle }) {
+export default function Messages({
+  modalIsOpen,
+  modalMessage,
+  closeModal,
+  modalTitle,
+}) {
   return (
     <>
       <Modal
@@ -15,7 +20,7 @@ export default function Messages({ modalIsOpen, modalMessage, closeModal, modalT
         contentLabel="Error Message"
         style={{
           overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
           },
         }}
       >

@@ -1,302 +1,298 @@
 .admin-panel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "gg-sans-semibold", monospace;
-    margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'gg-sans-semibold', monospace;
+  margin-top: 50px;
 }
 
 .main h2 {
-    justify-content: space-between;
-    color: #033859;
-    font-size: 32px;
-    font-family: "gg-sans-semibold", monospace;
+  justify-content: space-between;
+  color: #033859;
+  font-size: 32px;
+  font-family: 'gg-sans-semibold', monospace;
 }
 
 .admin-panel-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 70vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 70vw;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
 }
 
 .form-group label {
-    font-family: "gg-sans-medium", regular;
-    font-size: 20px;
-    color: var(--azul-oscuro);
-    margin-left: 10px;
+  font-family: 'gg-sans-medium', regular;
+  font-size: 20px;
+  color: var(--azul-oscuro);
+  margin-left: 10px;
 }
 
 .form-group input {
-    background-color: #F2F4F7;
-    width: 20vw;
-    height: 55px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    padding-left: 20px;
-    font-family: "gg-sans-medium", regular;
-    font-size: 20px;
-    color: var(--azul-oscuro);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: #f2f4f7;
+  width: 20vw;
+  height: 55px;
+  border-radius: 20px;
+  border: none;
+  padding: 5px;
+  padding-left: 20px;
+  font-family: 'gg-sans-medium', regular;
+  font-size: 20px;
+  color: var(--azul-oscuro);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .form-group select {
-    appearance: none; /* Elimina la apariencia predeterminada */
-    -webkit-appearance: none; /* Necesario para Safari */
-    -moz-appearance: none; /* Necesario para Firefox */
-    background: url('../../../public/images/arrow.png') no-repeat right center; /* Agrega tu propia imagen de flecha */
-    background-color: #F2F4F7;
-    width: 20vw;
-    height: 55px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    padding-left: 20px;
-    font-family: "gg-sans-medium", regular;
-    font-size: 20px;
-    color: var(--azul-oscuro);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  appearance: none; /* Elimina la apariencia predeterminada */
+  -webkit-appearance: none; /* Necesario para Safari */
+  -moz-appearance: none; /* Necesario para Firefox */
+  background: url('../../../public/images/arrow.png') no-repeat right center; /* Agrega tu propia imagen de flecha */
+  background-color: #f2f4f7;
+  width: 20vw;
+  height: 55px;
+  border-radius: 20px;
+  border: none;
+  padding: 5px;
+  padding-left: 20px;
+  font-family: 'gg-sans-medium', regular;
+  font-size: 20px;
+  color: var(--azul-oscuro);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-
-
 .form-group select option {
-    font-family: "gg-sans-medium", regular;
-    font-size: 20px;
-    color: var(--azul-oscuro);
+  font-family: 'gg-sans-medium', regular;
+  font-size: 20px;
+  color: var(--azul-oscuro);
 }
 
 .form-group-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    margin-top: 20px;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 1100px) {
-    .form-group-button {
-        flex-direction: row;
-    }
+  .form-group-button {
+    flex-direction: row;
+  }
 }
 
 /* ------------------------Buttons--------------------- */
 
-
 .button-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .add-button {
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--azul-oscuro);
-    background-color: var(--verde-aqua);
-    border: none;
-    border-radius: 20px;
-    height: 55px;
-    width: 180px;
-    padding: 10px 20px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--verde-aqua);
+  border: none;
+  border-radius: 20px;
+  height: 55px;
+  width: 180px;
+  padding: 10px 20px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .cancel-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: #F2F2F2;
-    background-color: var(--rojo);
-    border: none;
-    border-radius: 20px;
-    height: 55px;
-    width: 180px;
-    padding: 10px 20px;    
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: #f2f2f2;
+  background-color: var(--rojo);
+  border: none;
+  border-radius: 20px;
+  height: 55px;
+  width: 180px;
+  padding: 10px 20px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin: 10px;
 }
 
 .save-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--azul-oscuro);
-    background-color: var(--verde-aqua);
-    border: none;
-    border-radius: 20px;
-    height: 55px;
-    width: 180px;
-    padding: 10px 20px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--verde-aqua);
+  border: none;
+  border-radius: 20px;
+  height: 55px;
+  width: 180px;
+  padding: 10px 20px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin: 10px;
 }
 .action-button-edit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--azul-oscuro);
-    background-color: var(--verde-aqua);
-    border: none;
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-    margin: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--verde-aqua);
+  border: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: 2.5px;
 }
 
 .action-button-active {
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--azul-oscuro);
-    background-color: var(--azul);
-    border: none;
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;    
-    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-    margin: 2.5px;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--azul);
+  border: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: 2.5px;
 }
 .yellow {
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--azul-oscuro);
-    background-color: var(--amarillo);
-    border: none;
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-    margin: 2.5px;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--amarillo);
+  border: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: 2.5px;
 }
 
 .action-button-delete {
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--blanco-hueso);
-    background-color: var(--rojo);
-    border: none;
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-    margin: 2.5px;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--blanco-hueso);
+  background-color: var(--rojo);
+  border: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: 2.5px;
 }
 
 /* ------------------------Modal--------------------- */
 .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--blanco-hueso);
-    border-radius: 4px;
-    padding: 20px;
-    width: 80%;
-    max-width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--blanco-hueso);
+  border-radius: 4px;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
 }
 
 .modal-overlay {
-    background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .modal h2 {
-    font-family: "gg-sans-bold", monospace;
-    color: var(--azul-oscuro);
-    font-size: 24px;
-    margin-bottom: 10px;
+  font-family: 'gg-sans-bold', monospace;
+  color: var(--azul-oscuro);
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .modal p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-family: "gg-sans-regular", monospace;
-    color: var(--azul-oscuro);
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-family: 'gg-sans-regular', monospace;
+  color: var(--azul-oscuro);
 }
 .modal button {
-    font-family: "gg-sans-regular", monospace;
-    font-size: 18px;
-    color: var(--azul-oscuro);
-    background-color: var(--verde-aqua);
-    border: none;
-    border-radius: 20px;
-    width: 130px;
-    padding: 10px 20px;
-    margin-right: 10px;
+  font-family: 'gg-sans-regular', monospace;
+  font-size: 18px;
+  color: var(--azul-oscuro);
+  background-color: var(--verde-aqua);
+  border: none;
+  border-radius: 20px;
+  width: 130px;
+  padding: 10px 20px;
+  margin-right: 10px;
 }
 
-.registered-list{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    padding: 20px 50px 50px 50px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+.registered-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px 50px 50px 50px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 /* ------------------------Table--------------------- */
 .table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #ffffff;
 }
 
 .table table {
-    width: 70vw;
-    border-collapse: collapse;
-
+  width: 70vw;
+  border-collapse: collapse;
 }
 
 .table th {
-    background-color: var(--blanco-hueso);
-    color: var(--azul-oscuro);
-    font-family: "gg-sans-semibold", monospace;
-    font-size: 20px;
-    padding: 10px;
-    text-align: center;
+  background-color: var(--blanco-hueso);
+  color: var(--azul-oscuro);
+  font-family: 'gg-sans-semibold', monospace;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
 }
 
 .table td {
-    color: var(--azul-oscuro);
-    font-family: "gg-sans-medium", monospace;
-    font-size: 18px;
-    padding: 10px;
-    text-align: center;
+  color: var(--azul-oscuro);
+  font-family: 'gg-sans-medium', monospace;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
 }
 
 .table-manager-actions {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .form-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .admin-panel-form {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }

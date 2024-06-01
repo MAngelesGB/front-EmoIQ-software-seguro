@@ -24,16 +24,17 @@ function SideNav({ items }) {
               <NavLink to={item.link} className="sideNav-item">
                 <svg
                   className="sideNav-icon"
-                  dangerouslySetInnerHTML={{ __html: item.icon }} />
-                <span>
-                  {item.name}
-                </span>
+                  dangerouslySetInnerHTML={{ __html: item.icon }}
+                />
+                <span>{item.name}</span>
               </NavLink>
             </li>
           ))}
         </ul>
       </nav>
-      <button className="logout-button" onClick={handleClick}>CERRAR SESIÓN</button>
+      <button className="logout-button" onClick={handleClick}>
+        CERRAR SESIÓN
+      </button>
     </div>
   );
 }
