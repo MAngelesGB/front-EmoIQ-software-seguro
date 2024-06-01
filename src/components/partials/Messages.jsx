@@ -5,7 +5,7 @@ import './Messages.css';
 
 Modal.setAppElement("#root");
 
-export default function Messages({ modalIsOpen, modalMessage, closeModal }) {
+export default function Messages({ modalIsOpen, modalMessage, closeModal, modalTitle }) {
   return (
     <>
       <Modal
@@ -19,7 +19,7 @@ export default function Messages({ modalIsOpen, modalMessage, closeModal }) {
           },
         }}
       >
-        <h2>Error</h2>
+        <h2>{modalTitle}</h2>
         <p>{modalMessage}</p>
         <button onClick={closeModal}>Cerrar</button>
       </Modal>

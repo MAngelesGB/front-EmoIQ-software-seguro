@@ -127,6 +127,7 @@
 
 
 .contenido-material .ruta-aprendizaje{
+  align-self: flex-start;
   width: 50%;
   margin: 30px 30px 0px 30px
 }
@@ -139,7 +140,8 @@
   background-color: #F6F6F6;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
   border-radius: 10px;
-  height: 85vh;
+  min-height: 85vh;
+  padding-bottom: 2rem;
   margin-top: 30px;
   color: var(--azul-oscuro);
 }
@@ -176,6 +178,7 @@
   flex-direction: row;
   background-color: var(--azul-oscuro);
   color: #FFFFFF;
+  cursor: pointer;
 }
 
 .group-contenido .items .btn-options .btn-editar{
@@ -185,6 +188,7 @@
   margin-left: 10px;
   background-color: var(--azul);
   color: #FFFFFF;
+  cursor: pointer;
 }
 .group-contenido .items .btn-options .btn-editar span{
   margin-left: 10px;
@@ -215,6 +219,8 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .ruta-aprendizaje{
@@ -237,6 +243,10 @@
 
 .ruta-aprendizaje .tema-contenido{
   width:75%
+}
+
+.ruta-aprendizaje .tema.selected {
+  background-color: #CAE6E8;
 }
 
 .ruta-aprendizaje img{
